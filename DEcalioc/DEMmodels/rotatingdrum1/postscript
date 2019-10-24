@@ -2,6 +2,6 @@
 
 shopt -s expand_aliases
 cd post
-lpp dump*.rotatingdrum
+lpp dump*.rotatingdrum1
 
 

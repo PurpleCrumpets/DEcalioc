@@ -64,7 +64,9 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
-  Input.numOfSam       =   21; % samples PER model (5-10 per calibration variable)
+  samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
+  numVar               =   27; % 27 Design Variables
+  Input.numOfSam       =   samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -149,17 +151,6 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   % Design variables
   %   - assign: cell struct which assigns variable names to the design variables 
-  %     (1) densityP
-  %     (2) poissonsRatioP  
-  %     (3) coefFrictionPP
-  %     (4) coefFrictionPW
-  %     (5) coefRollingFrictionPP
-  %     (6) coefRollingFrictionPW
-%  assign{1} = "densityP";
-%  assign{2} = "coefFrictionPP";
-%  assign{3} = "coefFrictionPW";
-%  assign{4} = "coefRollingFrictionPP";
-%  assign{5} = "coefRollingFrictionPW";
   
   % Coefficient of Restitution
   assign{1} = "COR_PP_PP";
@@ -195,13 +186,9 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   assign{27} = "CoRF_GL_DE2";
   
   
-  
   % Boundaries of the feasible region
   %   -> first row min-values, second row max-values
-  %   -> columns according to cell struct 'assign'
-%  paramLims = [500  0.3 0.3 0.025 0.025;
-%               800 0.7 0.7 0.075 0.075];
-               
+  %   -> columns according to cell struct 'assign'            
   paramLims = [0     0     0     0     0     0     0     0     0      ... CoR  Min
                0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3    ... CoSF Min
                0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... CoRF Min
