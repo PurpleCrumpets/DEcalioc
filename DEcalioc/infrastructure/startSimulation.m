@@ -35,7 +35,24 @@ function startSimulation(model,folderName)
   % change directory and start simulation
   % info: unix(...) waits until the simulation has finished
   chdir([path, 'optim/', model, '/', folderName, '/']);    
-  status= unix(['sh ', path, 'optim/', model, '/', folderName, '/runscript']);
+  status = unix(['cd ', path, 'optim/', model, '/', folderName, ';',...
+    ' /opt/torque/bin/qsub job.sh']);  
+
+  % Query output.txt file existence
+  command = ['cd ', path, 'optim/', model, '/', folderName, ';',...
+    ' test -e ', folderName,'_output.txt && echo 1 || echo 0'];
+    
+  j = [];
+  while isempty(j)
+    [~,cmd_out] = system(command);
+    if str2double(cmd_out) == 1
+      j = 1;
+      disp('Log file found...');
+      break
+    end
+    pause(60);
+  end
+   
   chdir(path);
   
 endfunction
