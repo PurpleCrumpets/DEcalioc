@@ -140,13 +140,17 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %            specified here as fixed model variables or must be defined 
   %            later on as design variables!
   
-  modelVars.coefRestitutionPP = 0.60;
-  modelVars.coefRestitutionPW = 0.69;
-  modelVars.poissonsRatioP    = 0.30;
-  modelVars.radiusP           = 2e-3;
-  modelVars.youngsModulusP    = 5e6;
   
-  modelVars.percentRayleigh   = 0.35;
+  % As the weighting factor of the Rayleigh time step is zero 
+  % (optim.WRL = 0), the modelVars are not necessary. They will be written to 
+  % to the data.head but will not make any difference as these variables are not 
+  % used anywhere in the main script.  
+  
+  modelVars.poissonsRatioP    = 0.30; % Not in use
+  modelVars.radiusP           = 2e-3; % Not in use
+  modelVars.youngsModulusP    = 5e6;  % Not in use 
+  
+  modelVars.percentRayleigh   = 0.35; % Not in use
   
   
   % Design variables
