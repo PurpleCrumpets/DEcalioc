@@ -42,7 +42,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   Input.model{1}       =   'Lift100';
   %Input.model{2}       =   'Lift102';
-  Input.cpu(1,1)       =   1;
+  Input.cpu(1,1)       =   4; % Default 1
   %Input.cpu(2,1)       =   1;
   
   
@@ -76,13 +76,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
   
   optim.targetVal{1}(1) =   420;
-  optim.targetVal{1}(2) =   0.02;
+%  optim.targetVal{1}(2) =   0.02; % Default in use
   %optim.targetVal{2}(1) =   15;
   %optim.targetVal{2}(2) =   709;
   %optim.targetVal{2}(3) =   0.58;
   
   optim.tolRes{1}(1)   =   0.01;
-  optim.tolRes{1}(2)   =   0.01;
+%  optim.tolRes{1}(2)   =   0.01; % Default in use
   %optim.tolRes{2}(1)   =   0.02;
   %optim.tolRes{2}(2)   =   0.05;
   %optim.tolRes{2}(3)   =   0.01;
@@ -91,7 +91,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   optim.maxIter       =   3;
   optim.maxFunEvals   =   40;
   
-  optim.WRL           =   0.5;
+  optim.WRL           =   0; % Default 0.5
   
   
   %*****************************************************************************
