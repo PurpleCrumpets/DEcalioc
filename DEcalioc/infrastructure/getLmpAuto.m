@@ -16,7 +16,7 @@ function getLmpAuto(model, folderName)
 
   % ['find */src/lmp_auto -exec cp {} ', path_hypnos_sim projectname, '/ \;'];
 
-  system(['cd ~ ; find */src/lmp_auto -exec cp {} ', path, 'optim/', model, '/',...
+  system(['cd ~/ ; find */src/lmp_auto -exec cp {} ', path, 'optim/', model, '/',...
     folderName, '/ \;'];
 
     
