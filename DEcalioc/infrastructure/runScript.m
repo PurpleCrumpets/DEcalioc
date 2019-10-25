@@ -61,8 +61,6 @@ function results = runScript(matr, model)
   % write simulation settings into job.sh 
   writeJob(model, newFolderName);
   
-  % obtain lmp_auto 
-  getLmpAuto(model, newFolderName);
   
   %*****************************************************************************
   %//	START SIMULATION

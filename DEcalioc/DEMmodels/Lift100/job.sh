@@ -5,6 +5,8 @@
 #PBS -N DEM
 #PBS -o ${PBS_JOBNAME}_output.txt
 
+cd ~/
+find */src/lmp_auto -exec cp {} path \;
 cd path
 
 mpirun -np 0 lmp_auto < in.Lift100
