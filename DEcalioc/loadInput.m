@@ -40,19 +40,16 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.model{k}         : name of k-th model, n models in total
   %  - Input.cpu(k,1)         : CPUs used in a run of the k-th model
   
-  %              Simulation Primary Settings:  RPM  -  Filling degree
-  Input.model{1}       =   'rotatingdrum1'; %  20      0.2 
-  Input.model{2}       =   'rotatingdrum2'; %  20      0.5
-  Input.model{3}       =   'rotatingdrum3'; %  30      0.3
-  Input.model{4}       =   'rotatingdrum4'; %  40      0.2
-  Input.model{5}       =   'rotatingdrum5'; %  40      0.5
-  
+  %              Simulation Primary Settings:  Filling degree
+  Input.model{1}       =   'rotatingdrum1'; %  0.2       
+  Input.model{2}       =   'rotatingdrum2'; %  0.3      
+  Input.model{3}       =   'rotatingdrum3'; %  0.5      
+
   
   Input.cpu(1,1)       =   1;
   Input.cpu(2,1)       =   1;
   Input.cpu(3,1)       =   1;
-  Input.cpu(4,1)       =   1;
-  Input.cpu(5,1)       =   1;
+
   
   
   % User-specific input
