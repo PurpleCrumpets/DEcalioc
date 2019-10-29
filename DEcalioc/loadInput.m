@@ -48,7 +48,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   % User-specific input
   %  - Input.maxCPU           : maximum count of CPUs used during the whole run
-  Input.maxCPU         =   21;
+  Input.maxCPU         =   44;
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling

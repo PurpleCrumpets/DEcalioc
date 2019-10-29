@@ -61,6 +61,7 @@ function results = runScript(matr, model)
   % write simulation settings into job.sh 
   writeJob(model, newFolderName);
   
+  
   %*****************************************************************************
   %//	START SIMULATION
   %*****************************************************************************
