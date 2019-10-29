@@ -47,7 +47,7 @@ function writeJob(model, folderName)
   
   % Change processors (lines 4, 10)
   A{4} = strrep(A{4},'ppn=0',['ppn=',num2str(processors)]);
-  A{10} = strrep(A{10},'-np 0',['-np ',num2str(mpiProc)]);
+  A{12} = strrep(A{10},'-np 0',['-np ',num2str(mpiProc)]);
   
   % Change queue (line 2)
   A{2} = strrep(A{2},'-q default',['-q ',queue]);
@@ -59,7 +59,8 @@ function writeJob(model, folderName)
   A{5} = strrep(A{5},'DEM',folderName);
   
   % Change path (line 8)
-  A{8} = strrep(A{8},'path',[path, 'optim/', model, '/', folderName]);
+  A{9} = strrep(A{8},'path',[path, 'optim/', model, '/', folderName]);
+  A{10} = strrep(A{8},'path',[path, 'optim/', model, '/', folderName]);
   
   % Write cell A into job.sh 
   fd = fopen([path, 'optim/', model, '/', folderName, '/job.sh'], 'w'); 
