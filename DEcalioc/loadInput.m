@@ -46,9 +46,9 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   Input.model{3}       =   'rotatingdrum3'; %  0.5      
 
   
-  Input.cpu(1,1)       =   1;
-  Input.cpu(2,1)       =   1;
-  Input.cpu(3,1)       =   1;
+  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
+  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
+  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
 
   
   
@@ -57,11 +57,11 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             run. Currently used to represent the number of
   %                             jobs that can be submitted to the cluster at a
   %                             time. 
-  Input.maxCPU         =   160; % Hard limit: 512 
+  Input.maxCPU         =   160; % Hard limit of cluster: 512 
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
-  samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
+  samplesPerVar        =    7; % Recommended 5 to 10 by Rackl
   numVar               =   27; % 27 Design Variables
   Input.numOfSam       =   samplesPerVar*numVar; % samples PER model
   
@@ -87,36 +87,32 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
   
   % rotatingdrum1
-  optim.targetVal{1}(1) =   420;
-  optim.targetVal{1}(2) =   0.02;
+  optim.targetVal{1}(1) =   30.0;
+  optim.targetVal{1}(2) =   40.0;
+  optim.targetVal{1}(3) =   50.0;
   % rotatingdrum2
-  optim.targetVal{2}(1) =   15;
-  optim.targetVal{2}(2) =   709;
+  optim.targetVal{2}(1) =   30.0;
+  optim.targetVal{2}(2) =   40.0;
+  optim.targetVal{2}(3) =   50.0;
   % rotatingdrum3
-  optim.targetVal{3}(1) =   0.58;
-  optim.targetVal{3}(2) =   0.58;
-  % rotatingdrum4
-  optim.targetVal{4}(1) =   0.58;
-  optim.targetVal{4}(2) =   0.58;
-  % rotatingdrum5
-  optim.targetVal{5}(1) =   0.58;
-  optim.targetVal{5}(2) =   0.58;
+  optim.targetVal{3}(1) =   30.0;
+  optim.targetVal{3}(2) =   40.0;
+  optim.targetVal{3}(3) =   50.0;
+
   
   % rotatingdrum1
   optim.tolRes{1}(1)   =   0.01;
   optim.tolRes{1}(2)   =   0.01;
+  optim.tolRes{1}(3)   =   0.01;
   % rotatingdrum2
   optim.tolRes{2}(1)   =   0.01;
   optim.tolRes{2}(2)   =   0.01;
+  optim.tolRes{2}(3)   =   0.01;
   % rotatingdrum3
   optim.tolRes{3}(1)   =   0.01;
   optim.tolRes{3}(2)   =   0.01;
-  % rotatingdrum4
-  optim.tolRes{4}(1)   =   0.01;
-  optim.tolRes{4}(2)   =   0.01;
-  % rotatingdrum5
-  optim.tolRes{5}(1)   =   0.01;
-  optim.tolRes{5}(2)   =   0.01;
+  optim.tolRes{3}(3)   =   0.01;
+
 
   
   optim.tolfun        =   0.002; % Default: 0.002
