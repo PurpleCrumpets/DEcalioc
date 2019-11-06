@@ -30,18 +30,21 @@ function startSimulation(model,folderName)
   % returns:
   %   none
   
-  global path;
+  global path clusterDir;
+  myDirectory = [path, 'optim/', model, '/', folderName];
   
   % change directory and start simulation
-  % info: unix(...) waits until the simulation has finished
-  chdir([path, 'optim/', model, '/', folderName, '/']);    
-  status = unix(['cd ', path, 'optim/', model, '/', folderName, ';',...
-    ' /opt/torque/bin/qsub job.sh']);  
-
+  chdir([path, 'optim/', model, '/', folderName, '/']); 
+  [~, out1] = system(["ssh church70@hypnos5 'bash -s' < ", myDirectory,...
+    "/bashScript4.sh"]);
+  disp(out1)
+  
   % Query output.txt file existence
   command = ['cd ', path, 'optim/', model, '/', folderName, ';',...
     ' test -e ', folderName,'_output.txt && echo 1 || echo 0'];
     
+  command = ["ssh church70@hypnos5 'bash -s' < ", myDirectory,...
+    "/bashScript5.sh"];  
   j = [];
   while isempty(j)
     [~,cmd_out] = system(command);

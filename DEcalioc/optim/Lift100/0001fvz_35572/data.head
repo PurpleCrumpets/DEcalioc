@@ -1,0 +1,113 @@
+# This file is part of DEcalioc.
+# 
+# Main contributor(s) of this file:
+# Michael Rackl
+# 
+# Copyright 2016           Institute for
+#                          Materials Handling, Material Flow, Logistics
+#                          Technical University of Munich, Germany
+# 
+# DEcalioc is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3 of the License.
+# 
+# DEcalioc is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with DEcalioc. If not, see <http://www.gnu.org/licenses/>.
+# ----------------------------------------------------------------------
+
+################################################################################
+## Simulation Settings
+################################################################################
+variable simtype   string "r" # i = initialisation, r = restart
+variable queue     string "default" # Hypnos queue ("default" "long")
+variable walltime  string "200:00:00" # Max sim runtime (default = 200:00:00) 
+variable simdim     equal 2   # Simulation dimensions, 2D (2) or 3D (3)
+variable periodicbb equal 0   # Only for 2D: sim 0/1 - non/periodic boundary box
+variable proc       equal 4   # Number of processing cores utilised
+variable nodes      equal 1   # (NOT WORKING!) Number of processing nodes 
+variable autoproc   equal 1   # Auto set processor layout (yes = 1, no = 0)
+variable xproc      equal 0   # x-direction processor layout (0 for auto-assign)
+variable yproc      equal 0   # y-direction processor layout (0 for auto-assign)
+variable zproc      equal 0   # z-direction processor layout (0 for auto-assign)
+variable produceVTK equal 1   # 0 = no VTK output, 1 yes VTK output saved
+variable imaging    equal 1   # 0 = none, 1 = rotating, 2 = calibration
+variable caliStart  equal 3   # Loop count to start calibration imaging (-)
+variable caliEnd    equal 4   # Loop count to end calibration imaging (-)  
+
+# NOTE: The product of xproc, yproc, zproc should equal proc if autoproc 
+# is set to 0. Otherwise, the MATLAB input script will not be happy ;).
+# Walltime and proc are necessary for initialising a simulation using MATLAB.
+
+
+
+#####################################################################################
+# USER: general settings
+#####################################################################################
+variable percentRayleigh equal 0.45		# percentage of the Rayleigh timestep
+variable DumpInterv equal 1/12			# timestep (seconds) to generate a dump-file
+
+#####################################################################################
+# material properties
+#####################################################################################
+variable densityP equal 800			# density of the particles
+variable youngsModulusP equal 5e6 		# Young's modulus of the particles
+variable poissonsRatioP equal 0.3		# Poisson's ratio of the particles
+
+#####################################################################################
+# wall material
+#####################################################################################
+variable youngsModulusW equal 2.10e11 		# Young's modulus of the wall
+variable poissonsRatioW equal 0.3 		# Poisson's ratio of the wall
+
+#####################################################################################
+# interaction between materials
+#####################################################################################
+# coefficient of restitution
+variable coefRestitutionPP equal 0.6	  	# particle-particle
+variable coefRestitutionPW equal 0.6	  	# particle-wall
+variable coefRestitutionWW equal 0.1  		# wall-wall
+
+# coefficient of friction
+variable coefFrictionPP equal 0.5  		# particle-particle
+variable coefFrictionPW equal 0.5  		# particle-wall
+variable coefFrictionWW equal 0.2  		# wall-wall
+
+# coefficient rolling friction
+variable coefRollingFrictionPP equal 0.05  	# particle-particle
+variable coefRollingFrictionPW equal 0.05  	# particle-wall
+variable coefRollingFrictionWW equal 0  	# wall-wall
+
+#####################################################################################
+# material test setup
+#####################################################################################
+variable FillMass equal (1.5*0.55*${densityP}*0.25*PI*0.1^2*0.05)	# filling mass
+
+#####################################################################################
+# compute further parameter values from given input
+#####################################################################################
+variable FactMassrate equal (${FillMass}/2)		# massflow to fill the cylinder
+variable RLTS equal 0					# rayleigh-timestep, will be set later
+variable SIMTS equal 0					# simulation rayleigh-timestep, will be set later
+
+#####################################################################################
+# parameters from DEcaLiOc will be added below this note
+#####################################################################################
+
+variable coefRestitutionPP equal 0.6
+variable coefRestitutionPW equal 0.69
+variable poissonsRatioP equal 0.3
+variable radiusP equal 0.002
+variable youngsModulusP equal 5000000
+variable percentRayleigh equal 0.35
+variable densityP equal 592.4588
+variable coefFrictionPP equal 0.52747
+variable coefFrictionPW equal 0.61368
+variable coefRollingFrictionPP equal 0.038107
+variable coefRollingFrictionPW equal 0.027546
+variable RLTS equal 0.00011916
+variable SIMTS equal 4.1705e-05

@@ -10,6 +10,7 @@ function getLmpAuto(model, folderName)
   %
   % Last edited: 25/10/2019
   
+  % NOT IN USE!
   
   
   global path;

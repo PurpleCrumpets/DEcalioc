@@ -9,4 +9,6 @@ cd ~/
 find */src/lmp_auto -exec cp {} path \;
 cd path
 
-mpirun -np 0 lmp_auto < in.Lift100
+mpirun -np 0 lmp_auto < in.Lift100 > ${PBS_JOBNAME}_output.txt
+
+echo "Simulation Finished" > end.txt

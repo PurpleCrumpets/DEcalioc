@@ -11,7 +11,7 @@ function writeJob(model, folderName)
   % Last edited: 24/10/2019
   
   
-  global path;
+  global path clusterDir;
 
   %% Read proc, walltime info from data.head
   simData = simDataFromHead(model, folderName);
@@ -58,9 +58,14 @@ function writeJob(model, folderName)
   % Change job name (line 5)
   A{5} = strrep(A{5},'DEM',folderName);
   
-  % Change path (line 8)
-  A{9} = strrep(A{9},'path',[path, 'optim/', model, '/', folderName]);
-  A{10} = strrep(A{10},'path',[path, 'optim/', model, '/', folderName]);
+  % Change path (lines 9, 10)
+%  A{9} = strrep(A{9},'path',[path, 'optim/', model, '/', folderName]);
+%  A{10} = strrep(A{10},'path',[path, 'optim/', model, '/', folderName]);
+  
+  clusterModelDir = ['~/calibration/', clusterDir, '/', model, '/', folderName];
+  A{9} = strrep(A{9},'path',clusterModelDir);
+  A{10} = strrep(A{10},'path',clusterModelDir);
+  A{6} = strrep(A{6},'path',clusterModelDir);
   
   % Write cell A into job.sh 
   fd = fopen([path, 'optim/', model, '/', folderName, '/job.sh'], 'w'); 

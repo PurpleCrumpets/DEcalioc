@@ -1033,3 +1033,263 @@ ans = 0
 error: fclose: invalid stream number = 8
 >> exit
 
+>> Input
+Input =
+
+  scalar structure containing the fields:
+
+    model = 
+    {
+      [1,1] = Lift100
+    }
+    cpu =  4
+    maxCPU =  44
+    numOfSam =  21
+
+>> DEcalioc
+>> Input
+Input =
+
+  scalar structure containing the fields:
+
+    model = 
+    {
+      [1,1] = Lift100
+      [1,2] = Lift102
+    }
+    cpu =  4
+    maxCPU =  44
+    numOfSam =  21
+
+>> Input.model
+ans = 
+{
+  [1,1] = Lift100
+  [1,2] = Lift102
+}
+>> size(Input.model,1)
+ans =  1
+>> size(Input.model,2)
+ans =  2
+>> path
+path = /home/tim/Documents/GitHub/DEcalioc/DEcalioc/
+>> model = 'Lift100'
+model = Lift100
+>> folderName = 'test1'
+folderName = test1
+>> uploadDir(mode, folderName)
+error: called from
+    print_usage at line 79 column 5
+    mode at line 42 column 5
+error: Invalid call to mode.  Correct usage is:
+
+ -- mode (X)
+ -- mode (X, DIM)
+ -- [M, F, C] = mode (...)
+
+Additional help for built-in functions and operators is
+available in the online version of the manual.  Use the command
+'doc <topic>' to search the manual index.
+
+Help and information about Octave is also available on the WWW
+at http://www.octave.org and via the help@octave.org
+mailing list.
+>> uploadDir(model, folderName)
+error: called from
+    uploadDir at line 29 column 9
+error: fgetl: invalid stream number = -1
+>> uploadDir(model, folderName)
+error: called from
+    uploadDir at line 29 column 9
+error: fgetl: invalid stream number = -1
+>> uploadDir(model, folderName)
+myDirectory = /home/tim/Documents/GitHub/DEcalioc/DEcalioc/optim/Lift100/test1
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 62 column 5
+error: uiwait: invalid figure handle H
+>> clc
+>> uploadDir(model, folderName)
+myDirectory = /home/tim/Documents/GitHub/DEcalioc/DEcalioc/optim/Lift100/test1
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 62 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+parse error near line 60 of file /home/tim/Documents/GitHub/DEcalioc/DEcalioc/infrastructure/uploadDir.m
+
+  syntax error
+
+>>>   [out1,~] = system("ssh church70@hypnos5 'bash -s' < ", myDirectory "bashScript2.sh");
+                                                                                       ^
+
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 62 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+myDirectory = /home/tim/Documents/GitHub/DEcalioc/DEcalioc/optim/Lift100/test1
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+myDirectory = /home/tim/Documents/GitHub/DEcalioc/DEcalioc/optim/Lift100/test1
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 119 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uploadDir at line 113 column 11
+error: system: TYPE must be "sync" or "async"
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> myDirectory
+error: 'myDirectory' undefined near line 1 column 1
+>> uploadDir(model, folderName)
+debug> myDirectory
+myDirectory = /home/tim/Documents/GitHub/DEcalioc/DEcalioc/optim/Lift100/test1
+debug> dbquit
+
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+>> uploadDir(model, folderName)
+>> uploadDir(model, folderName)
+>> uploadDir(model, folderName)
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+error: called from
+    uiwait at line 51 column 7
+    uploadDir at line 116 column 5
+error: uiwait: invalid figure handle H
+>> uploadDir(model, folderName)
+>> uploadDir(model, folderName)
+>> ls
+>> DEcalioc
+>> 
+>> DEcalioc
+>> ls
+>> DEcalioc
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> clusterDir
+clusterDir = 20191104_125604
+>> myDirectory
+error: 'myDirectory' undefined near line 1 column 1
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+error: called from
+    DEcalioc at line 160 column 1
+error: 'foldername' undefined near line 160 column 20
+>> 
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> clusterDir
+clusterDir = 20191104_143050
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+error: called from
+    DEcalioc at line 160 column 1
+error: 'foldername' undefined near line 160 column 20
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+
+>> 
+>> clc
+>> myDirectory
+error: 'myDirectory' undefined near line 1 column 1
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+Starting DEM-Simulation of Lift100
+
+>> DEcalioc
+
+>> DEcalioc

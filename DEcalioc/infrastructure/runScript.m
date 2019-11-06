@@ -32,7 +32,7 @@ function results = runScript(matr, model)
   % returns:
   %   - results: cell structure with results (1: angle of response, 2: bulk density)
   
-  global path;
+  global path clusterDir;
   
   %*****************************************************************************
   %//	PREPARE MODELS
@@ -60,6 +60,12 @@ function results = runScript(matr, model)
     
   % write simulation settings into job.sh 
   writeJob(model, newFolderName);
+  
+  % edit bashscript 4,5 to submit job.sh and look for output
+  editBashScripts(model, newFolderName);
+    
+  % upload project directory to cluster
+  uploadDir(model, newFolderName);
   
   
   %*****************************************************************************

@@ -59,6 +59,23 @@ mkdir([path, 'KrigingFuns']);
 %***********************************************************************************
 [Input, optim, ~, ~, paramLims] = loadInput();
 
+
+%
+%// Hypnos - create directories
+%
+% calibration directory
+global clusterDir;
+[out1,clusterDir] = system("ssh church70@hypnos5 'bash -s' < bashScript1.sh");
+if out1 ~= 0
+  uiwait(warndlg('Failed to make calibration directory on cluster'));
+  return
+end
+
+clusterDir = strsplit(clusterDir);
+clusterDir = char(clusterDir(1));
+  
+ 
+
 %***********************************************************************************
 %//	Experimental plan and DEM-simulation
 %***********************************************************************************

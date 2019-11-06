@@ -42,13 +42,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   Input.model{1}       =   'Lift100';
   %Input.model{2}       =   'Lift102';
-  Input.cpu(1,1)       =   4; % Default 1
+  Input.cpu(1,1)       =   1; % Default 1
   %Input.cpu(2,1)       =   1;
   
   
   % User-specific input
   %  - Input.maxCPU           : maximum count of CPUs used during the whole run
-  Input.maxCPU         =   44;
+  Input.maxCPU         =   8;
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
