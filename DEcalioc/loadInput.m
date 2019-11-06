@@ -42,13 +42,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   %              Simulation Primary Settings:  Filling degree
   Input.model{1}       =   'rotatingdrum1'; %  0.2       
-  Input.model{2}       =   'rotatingdrum2'; %  0.3      
-  Input.model{3}       =   'rotatingdrum3'; %  0.5      
+%  Input.model{2}       =   'rotatingdrum2'; %  0.3      
+%  Input.model{3}       =   'rotatingdrum3'; %  0.5      
 
   
   Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
-  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
-  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
+%  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
+%  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
 
   
   
@@ -61,7 +61,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
-  samplesPerVar        =    7; % Recommended 5 to 10 by Rackl
+  samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
   numVar               =   27; % 27 Design Variables
   Input.numOfSam       =   samplesPerVar*numVar; % samples PER model
   
@@ -91,13 +91,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   optim.targetVal{1}(2) =   40.0;
   optim.targetVal{1}(3) =   50.0;
   % rotatingdrum2
-  optim.targetVal{2}(1) =   30.0;
-  optim.targetVal{2}(2) =   40.0;
-  optim.targetVal{2}(3) =   50.0;
+%  optim.targetVal{2}(1) =   30.0;
+%  optim.targetVal{2}(2) =   40.0;
+%  optim.targetVal{2}(3) =   50.0;
   % rotatingdrum3
-  optim.targetVal{3}(1) =   30.0;
-  optim.targetVal{3}(2) =   40.0;
-  optim.targetVal{3}(3) =   50.0;
+%  optim.targetVal{3}(1) =   30.0;
+%  optim.targetVal{3}(2) =   40.0;
+%  optim.targetVal{3}(3) =   50.0;
 
   
   % rotatingdrum1
@@ -105,13 +105,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   optim.tolRes{1}(2)   =   0.01;
   optim.tolRes{1}(3)   =   0.01;
   % rotatingdrum2
-  optim.tolRes{2}(1)   =   0.01;
-  optim.tolRes{2}(2)   =   0.01;
-  optim.tolRes{2}(3)   =   0.01;
+%  optim.tolRes{2}(1)   =   0.01;
+%  optim.tolRes{2}(2)   =   0.01;
+%  optim.tolRes{2}(3)   =   0.01;
   % rotatingdrum3
-  optim.tolRes{3}(1)   =   0.01;
-  optim.tolRes{3}(2)   =   0.01;
-  optim.tolRes{3}(3)   =   0.01;
+%  optim.tolRes{3}(1)   =   0.01;
+%  optim.tolRes{3}(2)   =   0.01;
+%  optim.tolRes{3}(3)   =   0.01;
 
 
   
