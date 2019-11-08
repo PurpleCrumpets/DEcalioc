@@ -7,4 +7,8 @@
 
 cd path
 
-mpirun -np 0 ~/MYLIGGGHTS/src/lmp_auto < in.Lift100 
+mpirun -np 0 ~/MYLIGGGHTS/src/lmp_auto < in.rotatingdrum1
+
+cd OctaveFuns/
+
+octave makeAngle.m
