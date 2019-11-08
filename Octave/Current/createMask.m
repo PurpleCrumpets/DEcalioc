@@ -23,7 +23,6 @@ function mask = createMask(imageStructName)
 %% Set Path
 global pathProject
 
-
 %% projectName
 pathParts = strsplit(pathProject,filesep);
 projectName = pathParts{end-1};

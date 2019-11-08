@@ -3,21 +3,21 @@ function results = curvePropertiesParallel(vidmasks, framerate, model,fr)
   first_frame = 1;
   
   % convert imageStructName to string 
-if isa(framerate,'cell')
-  framerate = cell2mat(framerate);
-end
+  if isa(framerate,'cell')
+    framerate = cell2mat(framerate);
+  end
 
-if isa(model,'cell')
-  model = char(model);
-end
+  if isa(model,'cell')
+    model = char(model);
+  end
 
-if isa(fr,'cell')
-  fr = cell2mat(fr);
-end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  if isa(fr,'cell')
+    fr = cell2mat(fr);
+  end
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-masks = cell2mat(vidmasks);
-%  masks = vidmasks(:,:,fr);
+  masks = cell2mat(vidmasks);
+  %  masks = vidmasks(:,:,fr);
   
   results.time = (fr-1)/framerate;
   drum = drumCircle(masks);

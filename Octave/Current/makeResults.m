@@ -46,10 +46,7 @@ pathProject = fullfile(pathParts{1:(end-2)});
 pathProject = fullfile('/',pathProject,'/');
 projectName = pathParts{end-2};
 
-% get imaging time steps
-imagingTS = getImagingTS(projectName);
-
-% getAngle
-[averageOutput,results] = getAngle(projectName,angleModel,imagingTS);
 
 
+% get angles of repose  
+[results, averageOutput] = getAngle(projectName,angleModel);

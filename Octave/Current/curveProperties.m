@@ -66,18 +66,18 @@ function results = curveProperties(vidmasks,framerate,model)
   vidmasks = num2cell(vidmasks,[1 2]);
   vidmasks =  permute(vidmasks,[1 3 2]);
 
- framerateParallel(1:F) = {framerate};
- modelParallel(1:F)     = {model};
- frParallel             = num2cell(1:F);
+  framerateParallel(1:F) = {framerate};
+  modelParallel(1:F)     = {model};
+  frParallel             = num2cell(1:F);
 
 
   %% Parallel loop
   results = pararrayfun (nPROC, @curvePropertiesParallel, vidmasks, framerateParallel, modelParallel, frParallel);
 
   %% Serial Loop
-  %for fr = F:-1:1
-  %  results(fr) = curvePropertiesParallel(vidmasks(fr), framerate, model, fr);
-  %end
+%  for fr = F:-1:1
+%    results(fr) = curvePropertiesParallel(vidmasks(fr), framerate, model, fr);
+%  end
 
 
 endfunction
