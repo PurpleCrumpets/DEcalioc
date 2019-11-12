@@ -27,13 +27,19 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
   global pathProject
 
   % create anaylsis Directory
-  if ~exist(fullfile(pathProject,'analysis'), 'dir')
-     mkdir(pathProject,'analysis')
+  if ~exist(fullfile(pathProject,'analysis'), 'dir');
+     mkdir(pathProject,'analysis');
   end
   
   % remove old angleRepose.txt file if it exists
-  command = ['rm ', fullfile(pathProject,'analysis',[projectName, '_angleRepose.txt'])];
-  system(command)
+  command = ['[ -f ', fullfile(pathProject,'analysis',...
+    [projectName, '_angleRepose.txt']), ' ] && echo "1" || echo "0"'];
+  [~,str] = system(command);
+  if str == 1
+    command = ['rm ', fullfile(pathProject,'analysis',...
+      [projectName, '_angleRepose.txt'])];
+    [~,~] = system(command);
+  end
   
   % obtain number of cores assigned to job 
   %nPROC = getPROC(pathProject);
@@ -49,7 +55,7 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
   for i = 1:size(imageType,1)
       imageStruct = dir(fullfile(pathProject,'images',['*.', imageType{i}]));
       numFiles = length(imageStruct);
-
+      
       if numFiles ~= 0
           imageType = imageType{i};
           break 
@@ -65,6 +71,11 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
   imageStruct = sortImageStruct(imageStruct);
   imageStructName = {imageStruct.name};
 
+  % obtain list of time-steps
+  timesteps = {imageStruct.name};  
+  timesteps = regexp(timesteps,['(?<=image_)\d*(?=\.',imageType,')'],'match')';
+  timesteps = str2double(cat(1,timesteps{:}));
+  
   % obtain image resolution (memory preallocation purposes)
   info = imfinfo(fullfile(pathProject,'images',imageStruct(1).name));
 
@@ -76,10 +87,12 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
   imagingTS = getImagingTS(projectName);
   
   for k = 1:length(imagingTS)/2
-
-    startEndImaging = [char(imagingTS(2*k-1)); char(imagingTS(2*k))];
-    startImagingRow = find(strcmp(imageStructName, ['image_', startEndImaging(1,:), '.', imageType]));
-    endImagingRow   = find(strcmp(imageStructName, ['image_', startEndImaging(2,:), '.', imageType]));
+    
+    startEndImaging = [str2num(imagingTS{2*k-1}); str2num(imagingTS{2*k})]; 
+    startImagingRow = find(timesteps >= startEndImaging(1));
+    endImagingRow   = find(timesteps <= startEndImaging(2));
+    startImagingRow = min(startImagingRow);
+    endImagingRow   = max(endImagingRow);
     numRows = endImagingRow-startImagingRow+1;
     
     %% Create Sequence of Masks
