@@ -1,6 +1,6 @@
 function nPROC = getPROC(pathProject) 
   %
-  % nPROC.m
+  % getPROC.m
   %
   % Function to obtain the number of processing cores assigned for a job
   % submission. This is achieved by reading the job.sh or job.script file and
@@ -9,34 +9,50 @@ function nPROC = getPROC(pathProject)
   % 
   % Tim Churchfield
   %
-  % Last Edited: 06/11/2019
+  % Last Edited: 13/11/2019
   %
+  % ----------------------------------------------------------------------------
   %% Variable Dictionary
-  % pathJob - path to job.sh or job.script
-  % fileID  - output from fopen to test if file successfully opened
-  % str     - string containg line of text from a line within job.sh/job.script
-  % nPROC   - number of processing cores assigned to job 
-
-
+  %
+  % -- Inputs --
+  %
+  % pathProject - Absolute path to project directory
+  % 
+  %
+  % -- Outputs --
+  %
+  % nPROC       - Number of processing cores assigned to job 
+  %
+  %
+  % -- Other --
+  %
+  % pathJob     - Absolute path to job.sh script
+  % fileID      - Output from fopen to test if file successfully opened
+  % str         - Text from a line within job.sh/job.script
+  %
+  %
+  % ----------------------------------------------------------------------------
+  %% Execution
+  
   % Open file
-  pathJob = fullfile(pathProject,'job.sh');
+  pathJob = fullfile(pathProject,'job.sh'); % job.sh
   fileID = fopen(pathJob,'r');
 
   if fileID == -1
-    pathJob = fullfile(pathProject,'job.script');
+    pathJob = fullfile(pathProject,'job.script'); % job.script
     fileID = fopen(pathJob,'r');
   end
   
   str = fgets(fileID);   
 
-  % Processors
+  % obtain number of assigned processors
   frewind(fileID); % Reset read position in file
   while ~startsWith(str,'mpirun -np ')
       str = fgets(fileID);
   end
   nPROC = sscanf(str,'mpirun -np %d');
 
-  % Close data.head
+  % Close file
   fclose(fileID);
 
 endfunction

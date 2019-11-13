@@ -19,17 +19,16 @@ if "(${imaging} == 1)" then &
 	"jump imaging.data Imstart"
 
 # Check if Calibration Imaging Command Given
-if "(${imaging} == 2) && ${count} == ${caliStart})" then & 
-	"jump imaging.data Imstart" &
-	"print "${now}" screen no append images/imaging_ts.txt"
+if "(${imaging} == 2) && (${count} == ${caliStart})" then       & 
+	"print '${now}' screen no append images/imaging_ts.txt" &
+	"jump imaging.data Imstart"
 
 # End Calibration Imaging
-if "(${imaging} == 2) && ${count} == ${caliEnd})" then        & 
-	"variable imaging   equal 2"                          &
-	"variable caliStart equal ${caliStart}+3"             &
-	"variable caliEnd   equal ${caliEnd}+3"               &
-	"print "${now}" screen no append post/imaging_ts.txt" &
-	"undump dumpimageR1"                                  &
+if "(${imaging} == 2) && (${count} == ${caliEnd})" then         & 
+	"variable caliStart equal ${caliStart}+3"               &
+	"variable caliEnd   equal ${caliEnd}+3"                 &
+	"print '${now}' screen no append images/imaging_ts.txt" &
+	"undump dumpimageR1"                                    &
 	"jump imaging.data endImjump"
  
 
@@ -60,7 +59,7 @@ variable centreYR1 equal (${drumPosYR1}+${limit7})/(${limit4}+${limit7}) # (-)
 variable centreZR1 equal (${drumPosZR1}+${limit1})/(${limit1}+${limit1}) # (-)
 
 # Imaging Command
-dump dumpimageR1 all image $(v_thermofreq) images/image_*.ppm type type &
+dump dumpimageR1 all image $(v_thermofreq) images/image_*.jpeg type type &
 	zoom ${zoomR1} size 1080 1080 view ${thetaR1} ${phiR1} &
 	center s ${centreXR1} ${centreYR1} ${centreZR1} shiny 0 box no 0.02
 dump_modify dumpimageR1 adiam 1 ${diaPP} adiam 2 ${diaGL} &

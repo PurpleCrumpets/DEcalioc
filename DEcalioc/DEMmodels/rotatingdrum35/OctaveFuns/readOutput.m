@@ -19,37 +19,44 @@
 % You should have received a copy of the GNU General Public License
 % along with DEcalioc. If not, see <http://www.gnu.org/licenses/>.
 % ----------------------------------------------------------------------
+%
+% Modified by Tim Churchfield
+% Last updated: 13/11/2019
+%
+% ----------------------------------------------------------------------
 
-function res = getResults(model, folderName)
+function A = readOutput(model, folderName)
   % INFO
-  % Calculate the angle of repsonse and the bulk density based on the results
-  % of the DEM-Simulation.
-  % Returns NaN if calculation throws an error.
-  %
+  % Reads the average and non-linear dynamic angles of repose for three
+  % different rotational speeds from the AngleRepose.txt output file.
+  % 
   % args:
   %   - model: model's name
-  %   - folderName: name of the folder where the simulation output has been written
-  %                 i.e. the simulation has been run
+  %   - folderName: name of the folder where the corresponding results file is stored
   % returns:
-  %   - results: scalar structure containg angle of response (1) and bulk density (2)
+  %   - A: dynamic angles of repose
   
+  global path;
   
-  try
-    A = readOutput(model, folderName);
-    res{1} = A{1};
-    res{2} = A{2};
-    res{3} = A{3};
-    res{4} = A{4};
-    res{5} = A{5};
-    res{6} = A{6};
-  catch
-    res{1} = NaN;
-    res{2} = NaN;
-    res{3} = NaN;
-    res{4} = NaN;
-    res{5} = NaN;
-    res{6} = NaN;
-    
+%  bd = csvread([path, 'optim/', model, '/', folderName, '/output_density']);
+%  
+%  mr = csvread([path, 'optim/', model, '/', folderName, '/output_mass']);
+  
+  % open angleRepose.txt file
+  fd = fopen([path, 'optim/', model, '/', folderName, 'analysis/', folderName, '_angleRepose.txt'], 'r');
+
+  
+  % Read file into cell A
+  i = 1;
+  tline = fgetl(fd);
+  A{i} = tline;
+  while ischar(tline)
+    i = i+1;
+    tline = fgetl(fd);
+    A{i} = tline;
   end
   
+  % Close file
+  fclose(fd);
+
 endfunction

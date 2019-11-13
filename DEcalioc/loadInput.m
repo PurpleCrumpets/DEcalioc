@@ -41,13 +41,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.cpu(k,1)         : CPUs used in a run of the k-th model
   
   %              Simulation Primary Settings:  Filling degree
-  Input.model{1}       =   'rotatingdrum1'; %  0.2       
-%  Input.model{2}       =   'rotatingdrum2'; %  0.3      
-%  Input.model{3}       =   'rotatingdrum3'; %  0.5      
+%  Input.model{1}       =   'rotatingdrum20'; %  0.2       
+  Input.model{2}       =   'rotatingdrum35'; %  0.3      
+%  Input.model{3}       =   'rotatingdrum50'; %  0.5      
 
   
-  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
-%  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
+%  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
+  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
 %  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
 
   
@@ -86,54 +86,54 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             Input.maxFunEvals
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
   
-  % rotatingdrum1
-  optim.targetVal{1}(1) =   30.0; % average
-  optim.targetVal{1}(2) =   30.0; % non-linear
-  optim.targetVal{1}(3) =   40.0; % average
-  optim.targetVal{1}(4) =   40.0; % non-linear
-  optim.targetVal{1}(5) =   50.0; % average
-  optim.targetVal{1}(6) =   50.0; % non-linear
+  % rotatingdrum20
+%  optim.targetVal{1}(1) =   30.0; % average
+%  optim.targetVal{1}(2) =   30.0; % non-linear
+%  optim.targetVal{1}(3) =   40.0; % average
+%  optim.targetVal{1}(4) =   40.0; % non-linear
+%  optim.targetVal{1}(5) =   50.0; % average
+%  optim.targetVal{1}(6) =   50.0; % non-linear
   
-  % rotatingdrum2
-  optim.targetVal{2}(1) =   30.0;
-  optim.targetVal{2}(2) =   30.0;
-  optim.targetVal{2}(3) =   40.0;
-  optim.targetVal{2}(4) =   40.0;
-  optim.targetVal{2}(5) =   50.0;
-  optim.targetVal{2}(6) =   50.0;
+  % rotatingdrum35
+  optim.targetVal{2}(1) =   30.0; % average
+  optim.targetVal{2}(2) =   30.0; % non-linear
+  optim.targetVal{2}(3) =   40.0; % average
+  optim.targetVal{2}(4) =   40.0; % non-linear
+  optim.targetVal{2}(5) =   50.0; % average
+  optim.targetVal{2}(6) =   50.0; % non-linear
   
-  % rotatingdrum3
-  optim.targetVal{2}(1) =   30.0;
-  optim.targetVal{2}(2) =   30.0;
-  optim.targetVal{2}(3) =   40.0;
-  optim.targetVal{2}(4) =   40.0;
-  optim.targetVal{2}(5) =   50.0;
-  optim.targetVal{2}(6) =   50.0;
+  % rotatingdrum50
+%  optim.targetVal{2}(1) =   30.0; % average
+%  optim.targetVal{2}(2) =   30.0; % non-linear
+%  optim.targetVal{2}(3) =   40.0; % average
+%  optim.targetVal{2}(4) =   40.0; % non-linear
+%  optim.targetVal{2}(5) =   50.0; % average
+%  optim.targetVal{2}(6) =   50.0; % non-linear
 
   
-  % rotatingdrum1
-  optim.tolRes{1}(1)   =   0.01;
-  optim.tolRes{1}(2)   =   0.01;
-  optim.tolRes{1}(3)   =   0.01;
-  optim.tolRes{1}(4)   =   0.01;
-  optim.tolRes{1}(5)   =   0.01;
-  optim.tolRes{1}(6)   =   0.01;
+  % rotatingdrum20
+%  optim.tolRes{1}(1)   =   0.01; % average
+%  optim.tolRes{1}(2)   =   0.01; % non-linear
+%  optim.tolRes{1}(3)   =   0.01; % average
+%  optim.tolRes{1}(4)   =   0.01; % non-linear
+%  optim.tolRes{1}(5)   =   0.01; % average
+%  optim.tolRes{1}(6)   =   0.01; % non-linear
   
-  % rotatingdrum2
-%  optim.tolRes{2}(1)   =   0.01;
-%  optim.tolRes{2}(2)   =   0.01;
-%  optim.tolRes{2}(3)   =   0.01;
-%  optim.tolRes{2}(4)   =   0.01;
-%  optim.tolRes{2}(5)   =   0.01;
-%  optim.tolRes{2}(6)   =   0.01;
+  % rotatingdrum35
+  optim.tolRes{2}(1)   =   0.01; % average
+  optim.tolRes{2}(2)   =   0.01; % non-linear
+  optim.tolRes{2}(3)   =   0.01; % average
+  optim.tolRes{2}(4)   =   0.01; % non-linear
+  optim.tolRes{2}(5)   =   0.01; % average
+  optim.tolRes{2}(6)   =   0.01; % non-linear
   
-  % rotatingdrum3
-%  optim.tolRes{3}(1)   =   0.01;
-%  optim.tolRes{3}(2)   =   0.01;
-%  optim.tolRes{3}(3)   =   0.01;
-%  optim.tolRes{3}(4)   =   0.01;
-%  optim.tolRes{3}(5)   =   0.01;
-%  optim.tolRes{3}(6)   =   0.01;
+  % rotatingdrum50
+%  optim.tolRes{3}(1)   =   0.01; % average
+%  optim.tolRes{3}(2)   =   0.01; % non-linear
+%  optim.tolRes{3}(3)   =   0.01; % average
+%  optim.tolRes{3}(4)   =   0.01; % non-linear
+%  optim.tolRes{3}(5)   =   0.01; % average
+%  optim.tolRes{3}(6)   =   0.01; % non-linear
 
 
   
@@ -182,16 +182,16 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   assign{8} = "COR_GL_DE1";
   assign{9} = "COR_GL_DE2";
   
-  % Coefficient of Static Friction
-  assign{10} = "CoSF_PP_PP";
-  assign{11} = "CoSF_PP_GL";
-  assign{12} = "CoSF_PP_DW";
-  assign{13} = "CoSF_PP_DE1";
-  assign{14} = "CoSF_PP_DE2";
-  assign{15} = "CoSF_GL_GL";
-  assign{16} = "CoSF_GL_DW";
-  assign{17} = "CoSF_GL_DE1";
-  assign{18} = "CoSF_GL_DE2";  
+  % Coefficient of Friction
+  assign{10} = "CoF_PP_PP";
+  assign{11} = "CoF_PP_GL";
+  assign{12} = "CoF_PP_DW";
+  assign{13} = "CoF_PP_DE1";
+  assign{14} = "CoF_PP_DE2";
+  assign{15} = "CoF_GL_GL";
+  assign{16} = "CoF_GL_DW";
+  assign{17} = "CoF_GL_DE1";
+  assign{18} = "CoF_GL_DE2";  
   
   % Coefficient of Rolling Friction
   assign{19} = "CoRF_PP_PP";
@@ -209,10 +209,10 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %   -> first row min-values, second row max-values
   %   -> columns according to cell struct 'assign'            
   paramLims = [0     0     0     0     0     0     0     0     0      ... CoR  Min
-               0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3    ... CoSF Min
+               0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3    ... CoF Min
                0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... CoRF Min
                1     1     1     1     1     1     1     1     1      ... CoR  Max
-               0.6   0.6   0.6   0.6   0.6   0.6   0.6   0.6   0.6    ... CoSF Max
+               0.6   0.6   0.6   0.6   0.6   0.6   0.6   0.6   0.6    ... CoF Max
                0.02  0.02  0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %   CORF Max
   
   

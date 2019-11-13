@@ -2,7 +2,7 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
   %
   % getAngle.m
   %
-  % function to create a sequence of masks from particle images produced by
+  % Script to create a sequence of masks from particle images produced by
   % LIGGGHTS and obtain the angle of repose for each image. The change in the
   % angle of repose is plotted with time.
   %
@@ -18,7 +18,7 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
 
 
 
-  % ----------------------------------------------------------------------------
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %% Preparation
   
   % Set Paths
