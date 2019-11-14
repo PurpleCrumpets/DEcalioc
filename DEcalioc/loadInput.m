@@ -176,44 +176,38 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   assign{2} = "COR_PP_GL";
   assign{3} = "COR_PP_DW";
   assign{4} = "COR_PP_DE1";
-  assign{5} = "COR_PP_DE2";
-  assign{6} = "COR_GL_GL";
-  assign{7} = "COR_GL_DW";
-  assign{8} = "COR_GL_DE1";
-  assign{9} = "COR_GL_DE2";
+  assign{5} = "COR_GL_GL";
+  assign{6} = "COR_GL_DW";
+  assign{7} = "COR_GL_DE1";
   
   % Coefficient of Friction
-  assign{10} = "CoF_PP_PP";
-  assign{11} = "CoF_PP_GL";
-  assign{12} = "CoF_PP_DW";
-  assign{13} = "CoF_PP_DE1";
-  assign{14} = "CoF_PP_DE2";
-  assign{15} = "CoF_GL_GL";
-  assign{16} = "CoF_GL_DW";
-  assign{17} = "CoF_GL_DE1";
-  assign{18} = "CoF_GL_DE2";  
+  assign{8} = "CoF_PP_PP";
+  assign{9} = "CoF_PP_GL";
+  assign{10} = "CoF_PP_DW";
+  assign{11} = "CoF_PP_DE1";
+  assign{12} = "CoF_GL_GL";
+  assign{13} = "CoF_GL_DW";
+  assign{14} = "CoF_GL_DE1"; 
   
   % Coefficient of Rolling Friction
-  assign{19} = "CoRF_PP_PP";
-  assign{20} = "CoRF_PP_GL";
-  assign{21} = "CoRF_PP_DW";
-  assign{22} = "CoRF_PP_DE1";
-  assign{23} = "CoRF_PP_DE2";
-  assign{24} = "CoRF_GL_GL";
-  assign{25} = "CoRF_GL_DW";
-  assign{26} = "CoRF_GL_DE1";
-  assign{27} = "CoRF_GL_DE2";
+  assign{15} = "CoRF_PP_PP";
+  assign{16} = "CoRF_PP_GL";
+  assign{17} = "CoRF_PP_DW";
+  assign{18} = "CoRF_PP_DE1";
+  assign{19} = "CoRF_GL_GL";
+  assign{20} = "CoRF_GL_DW";
+  assign{21} = "CoRF_GL_DE1";
   
   
   % Boundaries of the feasible region
   %   -> first row min-values, second row max-values
   %   -> columns according to cell struct 'assign'            
-  paramLims = [0     0     0     0     0     0     0     0     0      ... CoR  Min
-               0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3   0.3    ... CoF Min
-               0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... CoRF Min
-               1     1     1     1     1     1     1     1     1      ... CoR  Max
-               0.6   0.6   0.6   0.6   0.6   0.6   0.6   0.6   0.6    ... CoF Max
-               0.02  0.02  0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %   CORF Max
+  paramLims = [0     0     0     0     0     0     0      ... CoR  Min
+               0.3   0.3   0.3   0.3   0.3   0.3   0.3    ... CoF Min
+               0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... CoRF Min
+               1     1     1     1     1     1     1      ... CoR  Max
+               0.6   0.6   0.6   0.6   0.6   0.6   0.6    ... CoF Max
+               0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %   CORF Max
   
   
   %*****************************************************************************

@@ -31,29 +31,14 @@ r = RR / ratio; % particle radius
 
 %% Find left point
 
-found_left = 0;
+distance = 0;
+ii = 0;
 
-for ii = ceil(W/2):-1:1
+while distance <= r
+    ii = ii + 1;
     x = X(ii);
     y = Ytop(ii);
     distance = abs(norm([x - x0, y - y0]) - RR);
-    if distance < r
-        found_left = 1;
-        break
-    end
-end
-
-if ~found_left
-    
-    for ii = 1:ceil(W/2)
-        x = X(ii);
-        y = Ybot(ii);
-        distance = abs(norm([x - x0, y - y0]) - RR);
-        if distance < r
-            break
-        end
-    end
-    
 end
 
 x_left = x;
@@ -61,44 +46,19 @@ y_left = y;
 
 %% Find right point
 
-found_right = 0;
+distance = 0;
+ii = floor(W/2);
 
-for ii = floor(W/2):W
-    x = X(ii);
-    y = Ytop(ii);
-    distance = abs(norm([x - x0, y - y0]) - RR);
-    if distance < r
-        found_right = 1;
+while distance <= r
+    ii = ii + 1;
+    if ii > W
+        x = X(W);
         break
     end
+    x = X(ii);
+    y = Ybot(ii);
+    distance = abs(norm([x - x0, y - y0]) - RR);
 end
-
-if ~found_right
-	
-    for ii = W:-1:floor(W/2)
-        x = X(ii);
-        y = Ybot(ii);
-        distance = abs(norm([x - x0, y - y0]) - RR);
-        if distance < r
-            break
-        end
-    end
-    
-end
-
-% distance = 0;
-% ii = floor(W/2);
-% 
-% while distance <= r
-%     ii = ii + 1;
-%     if ii > W
-%         x = X(W);
-%         break
-%     end
-%     x = X(ii);
-%     y = Ybot(ii);
-%     distance = abs(norm([x - x0, y - y0]) - RR);
-% end
 
 x_right = x;
 y_right = y;
