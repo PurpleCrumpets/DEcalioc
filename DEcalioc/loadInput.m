@@ -41,9 +41,9 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.cpu(k,1)         : CPUs used in a run of the k-th model
   
   %              Simulation Primary Settings:  Filling degree
-%  Input.model{1}       =   'rotatingdrum20'; %  0.2       
-  Input.model{1}       =   'rotatingdrum35'; %  0.3      
-%  Input.model{3}       =   'rotatingdrum50'; %  0.5      
+%  Input.model{1}       =   'rotatingdrum20'; %  0.20       
+  Input.model{1}       =   'rotatingdrum35'; %  0.35      
+%  Input.model{3}       =   'rotatingdrum50'; %  0.50      
 
   
 %  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
@@ -164,7 +164,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   modelVars.poissonsRatioP    = 0.30; % Not in use
   modelVars.radiusP           = 2e-3; % Not in use
   modelVars.youngsModulusP    = 5e6;  % Not in use 
-  
+  modelVars.densityP          = 1000; % Not in use
   modelVars.percentRayleigh   = 0.35; % Not in use
   
   
@@ -202,13 +202,18 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   % Boundaries of the feasible region
   %   -> first row min-values, second row max-values
   %   -> columns according to cell struct 'assign'            
-  paramLims = [0.06  0.06  0.06  0.06  0.06  0.06  0.06      ... CoR  Min
-               0.2   0.2   0.2   0.2   0.2   0.2   0.2    ... CoF Min
-               0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... CoRF Min
-               0.95  0.95  0.95  0.95  0.95  0.95  0.95   ... CoR  Max
-               1.4   1.4   1.4   1.4   1.4   1.4   1.4    ... CoF Max
-               0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %   CORF Max
-  
+  paramLims = [0.06  0.06  0.06  0.06  0.06  0.06  0.06   ... 
+               0.2   0.2   0.2   0.2   0.2   0.2   0.2    ... 
+               0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... 
+               0.95  0.95  0.95  0.95  0.95  0.95  0.95   ... 
+               1.4   1.4   1.4   1.4   1.4   1.4   1.4    ... 
+               0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %
+  % Row 1: CoR Min
+  % Row 2: CoF Min 
+  % Row 3: CoRF Min
+  % Row 4: CoR Max
+  % Row 5: CoF Max 
+  % Row 6: CoRF Max
   
   %*****************************************************************************
   %//	END
