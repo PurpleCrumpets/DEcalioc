@@ -47,7 +47,7 @@ function writeJob(model, folderName)
   
   % Change processors (lines 4, 10)
   A{4} = strrep(A{4},'ppn=0',['ppn=',num2str(processors)]);
-  A{12} = strrep(A{10},'-np 0',['-np ',num2str(mpiProc)]);
+  A{12} = strrep(A{12},'-np 0',['-np ',num2str(mpiProc)]);
   
   % Change queue (line 2)
   A{2} = strrep(A{2},'-q default',['-q ',queue]);
