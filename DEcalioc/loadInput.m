@@ -42,12 +42,12 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   %              Simulation Primary Settings:  Filling degree
 %  Input.model{1}       =   'rotatingdrum20'; %  0.2       
-  Input.model{2}       =   'rotatingdrum35'; %  0.3      
+  Input.model{1}       =   'rotatingdrum35'; %  0.3      
 %  Input.model{3}       =   'rotatingdrum50'; %  0.5      
 
   
 %  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
-  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
+  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
 %  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
 
   
@@ -63,7 +63,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
   samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
   numVar               =   21; % 21 Design Variables
-  Input.numOfSam       =   100 %samplesPerVar*numVar; % samples PER model
+  Input.numOfSam       =   100; %samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -95,12 +95,12 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.targetVal{1}(6) =   50.0; % non-linear
   
   % rotatingdrum35
-  optim.targetVal{2}(1) =   25.0; % average
-  optim.targetVal{2}(2) =   25.0; % non-linear
-  optim.targetVal{2}(3) =   40.0; % average
-  optim.targetVal{2}(4) =   40.0; % non-linear
-  optim.targetVal{2}(5) =   55.0; % average
-  optim.targetVal{2}(6) =   55.0; % non-linear
+  optim.targetVal{1}(1) =   25.0; % average
+  optim.targetVal{1}(2) =   25.0; % non-linear
+  optim.targetVal{1}(3) =   40.0; % average
+  optim.targetVal{1}(4) =   40.0; % non-linear
+  optim.targetVal{1}(5) =   55.0; % average
+  optim.targetVal{1}(6) =   55.0; % non-linear
   
   % rotatingdrum50
 %  optim.targetVal{2}(1) =   30.0; % average
@@ -120,12 +120,12 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.tolRes{1}(6)   =   0.01; % non-linear
   
   % rotatingdrum35
-  optim.tolRes{2}(1)   =   0.01; % average
-  optim.tolRes{2}(2)   =   0.01; % non-linear
-  optim.tolRes{2}(3)   =   0.01; % average
-  optim.tolRes{2}(4)   =   0.01; % non-linear
-  optim.tolRes{2}(5)   =   0.01; % average
-  optim.tolRes{2}(6)   =   0.01; % non-linear
+  optim.tolRes{1}(1)   =   0.01; % average
+  optim.tolRes{1}(2)   =   0.01; % non-linear
+  optim.tolRes{1}(3)   =   0.01; % average
+  optim.tolRes{1}(4)   =   0.01; % non-linear
+  optim.tolRes{1}(5)   =   0.01; % average
+  optim.tolRes{1}(6)   =   0.01; % non-linear
   
   % rotatingdrum50
 %  optim.tolRes{3}(1)   =   0.01; % average
