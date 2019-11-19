@@ -57,13 +57,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             run. Currently used to represent the number of
   %                             jobs that can be submitted to the cluster at a
   %                             time. 
-  Input.maxCPU         =   160; % Hard limit of cluster: 512 
+  Input.maxCPU         =   400; % Hard limit of cluster: 512 
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
   samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
-  numVar               =   27; % 27 Design Variables
-  Input.numOfSam       =   samplesPerVar*numVar; % samples PER model
+  numVar               =   21; % 21 Design Variables
+  Input.numOfSam       =   100 %samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -95,12 +95,12 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.targetVal{1}(6) =   50.0; % non-linear
   
   % rotatingdrum35
-  optim.targetVal{2}(1) =   30.0; % average
-  optim.targetVal{2}(2) =   30.0; % non-linear
+  optim.targetVal{2}(1) =   25.0; % average
+  optim.targetVal{2}(2) =   25.0; % non-linear
   optim.targetVal{2}(3) =   40.0; % average
   optim.targetVal{2}(4) =   40.0; % non-linear
-  optim.targetVal{2}(5) =   50.0; % average
-  optim.targetVal{2}(6) =   50.0; % non-linear
+  optim.targetVal{2}(5) =   55.0; % average
+  optim.targetVal{2}(6) =   55.0; % non-linear
   
   % rotatingdrum50
 %  optim.targetVal{2}(1) =   30.0; % average
@@ -202,11 +202,11 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   % Boundaries of the feasible region
   %   -> first row min-values, second row max-values
   %   -> columns according to cell struct 'assign'            
-  paramLims = [0     0     0     0     0     0     0      ... CoR  Min
-               0.3   0.3   0.3   0.3   0.3   0.3   0.3    ... CoF Min
+  paramLims = [0.06  0.06  0.06  0.06  0.06  0.06  0.06      ... CoR  Min
+               0.2   0.2   0.2   0.2   0.2   0.2   0.2    ... CoF Min
                0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... CoRF Min
-               1     1     1     1     1     1     1      ... CoR  Max
-               0.6   0.6   0.6   0.6   0.6   0.6   0.6    ... CoF Max
+               0.95  0.95  0.95  0.95  0.95  0.95  0.95   ... CoR  Max
+               1.4   1.4   1.4   1.4   1.4   1.4   1.4    ... CoF Max
                0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %   CORF Max
   
   
