@@ -53,7 +53,7 @@ pkg load optim
 % set paths 
 global pathProject
 pathProject = [pwd(), "/"];
-%pathProject = '/home/tim/Desktop/createRestart35/OctaveFun/';
+%pathProject = '/home/tim/Desktop/createRestart20/OctaveFun/';
 %pathProject = '/data/home/church70/MYLIGGGHTS/simulations/createRestartTest/OctaveFun';
 
 % ------------------------------------------------------------------------------

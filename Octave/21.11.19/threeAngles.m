@@ -1,4 +1,4 @@
-function [y, derived] = threeAngles(param,xdata)
+function [y, derived] = threeAngles(xdata,param)
 
 % Describes the free surface of a rotating drum analytically, using three
 % consecutive straight lines, in general with different slopes, smoothed at

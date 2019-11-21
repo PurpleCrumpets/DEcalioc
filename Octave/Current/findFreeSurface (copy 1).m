@@ -1,10 +1,6 @@
 function [param, xdata, ydata, ycalc, residual, iterations] =...
     findFreeSurface(masks, model, param0)
 
-    
-% residual is NOT residual! Residual is actually fy which is the final guess
-    
-    
 % Calculates the parameters that best describe the curve of the top free
 % surface of a rotating drum.
 % The curve is described analytically by one of the chosen models.
@@ -124,20 +120,24 @@ end
 
 % Choose model
 pkg load optim
+fun = @(xdata,param)feval(model,xdata,param);
+[~, param, ~, iter, ~, ~, ~, residual, ~, ~] = ...
+ leasqr(xdata,ydata,param0,fun);    
+iterations = iter;
+ 
+%[param,~,residual,~,optInfo] =...
+%    lsqcurvefit(fun,param0,xdata,ydata,[],[],options);
 
-% Convert to column vectors
-param0 = param0';
 
-% Define function handle
-fun = @(param, xdata) feval(model,param,xdata);
-% residual is NOT residual! Residual is actually fy which is the final guess 
-[param, residual, ~, outp] = nonlin_curvefit(fun, param0,xdata,ydata); 
-   
-iterations = outp.niter;
-
-while outp.niter > 2 
-  [param, residual, ~, outp] = nonlin_curvefit(fun, param,xdata,ydata);
-  iterations = iterations + outp.niter;
+%loop = 0;
+while iter > 2
+%    [param,~,residual,~,optInfo] =...
+%        lsqcurvefit(fun,param,xdata,ydata,[],[],options);
+  [~, param, ~, iter, ~, ~, ~, residual, ~, ~] = ...
+    leasqr(xdata,ydata,param,fun); 
+  iterations = iterations + iter;
+%  loop = loop+1;    
+%    disp(['loop count: ', num2str(loop), ' Iterations: ', num2str(iter)])
 end
 
 ycalc = feval(model,xdata,param);
