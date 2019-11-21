@@ -47,7 +47,7 @@ function startSimulation(model,folderName)
     [~,cmd_out] = system(command);
     if str2double(cmd_out) == 1
       j = 1;
-      disp('Log file found...');
+      disp(['Log file found for', model, ', ', folderName]);
       break
     end
     pause(60);
