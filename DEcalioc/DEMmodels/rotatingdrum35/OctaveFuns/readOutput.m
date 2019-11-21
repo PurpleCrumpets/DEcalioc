@@ -37,14 +37,9 @@ function A = readOutput(model, folderName)
   %   - A: dynamic angles of repose
   
   global path;
-  
-%  bd = csvread([path, 'optim/', model, '/', folderName, '/output_density']);
-%  
-%  mr = csvread([path, 'optim/', model, '/', folderName, '/output_mass']);
-  
+    
   % open angleRepose.txt file
-  fd = fopen([path, 'optim/', model, '/', folderName, 'analysis/', folderName, '_angleRepose.txt'], 'r');
-
+  fd = fopen([path, 'optim/', model, '/', folderName, '/analysis/', folderName, '_angleRepose.txt'], 'r');
   
   % Read file into cell A
   i = 1;

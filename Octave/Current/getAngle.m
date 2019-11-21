@@ -121,17 +121,17 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
     % obtain curve properties
     results(k) = {curveProperties(vidmasks,frameRate,angleModel)};
 
-    % calculate average angles of repose 
-    angle_av = sum([results{k}.angle_av])/length(results{k});
+    % calculate magnitude of average angles of repose 
+    angle_av = abs(sum([results{k}.angle_av])/length(results{k}));
     if strcmpi(angleModel,'noModel') || strcmpi(angleModel,'n')
       averageOutput(k) = angle_av;
     else    
-      angle_nnl = sum([results{k}.angle_nnl])/length(results{k});
+      angle_nnl = abs(sum([results{k}.angle_nnl])/length(results{k}));
       averageOutput(k) = {[angle_av;angle_nnl]};
     end 
 
-    % save angle of repose results
-    tail = '_angleRepose.txt';
+    % convert to magnitude, save angle of repose results
+    tail = '_angleRepose.txt';  
     if exist('angle_nnl','var')
       save(fullfile(pathProject,'analysis',[projectName tail]),'angle_av','angle_nnl','-ascii','-append');
     else 
@@ -144,7 +144,6 @@ function [results, averageOutput] = getAngle(projectName,angleModel)
   
   % ----------------------------------------------------------------------------
   %% Remove images to save space
-  
   command = ['cd ' fullfile(pathProject, 'images'), ' ; find . -name "*.', imageType, '" -type f -delete'];
   [~,~] = system(command);
   
