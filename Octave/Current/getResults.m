@@ -19,41 +19,41 @@
 % You should have received a copy of the GNU General Public License
 % along with DEcalioc. If not, see <http://www.gnu.org/licenses/>.
 % ----------------------------------------------------------------------
+%
+% Modified by Tim Churchfield
+% Last updated: 13/11/2019
+%
+% ----------------------------------------------------------------------
 
-function startSimulation(model,folderName)
+function res = getResults(model, folderName)
   % INFO
-  % Starts the simulation through the bash-file "runscript"
+  % Calculate the angle of repsonse and the bulk density based on the results
+  % of the DEM-Simulation.
+  % Returns NaN if calculation throws an error.
   %
   % args:
-  %   - model: model name
-  %   - folderName: folder in which runscript lies
+  %   - model: model's name
+  %   - folderName: name of the folder where the simulation output has been written
+  %                 i.e. the simulation has been run
   % returns:
-  %   none
+  %   - res: scalar structure containg the average dynamic angle of repose 
+  %          (1,3,5) and the non-linear average dynamic angle of repose (2,4,6).
   
-  global path;
-  
-  % change directory and start simulation
-  % info: unix(...) waits until the simulation has finished
-  pause(60);
-  chdir([path, 'optim/', model, '/', folderName, '/']);    
-  status = unix(['cd ', path, 'optim/', model, '/', folderName, ';',...
-    ' /opt/torque/bin/qsub job.sh']);  
-
-  % Query output.txt file existence
-  command = ['cd ', path, 'optim/', model, '/', folderName, ';',...
-    ' test -e ', folderName,'_output.txt && echo 1 || echo 0'];
-    
-  j = [];
-  while isempty(j)
-    [~,cmd_out] = system(command);
-    if str2double(cmd_out) == 1
-      j = 1;
-      disp(['Log file found for', model, ', ', folderName]);
-      break
-    end
-    pause(120);
+  try
+    A = readOutput(model, folderName);
+    res{1} = A{1};
+    res{2} = A{2};
+    res{3} = A{3};
+    res{4} = A{4};
+    res{5} = A{5};
+    res{6} = A{6};
+  catch
+    res{1} = NaN;
+    res{2} = NaN;
+    res{3} = NaN;
+    res{4} = NaN;
+    res{5} = NaN;
+    res{6} = NaN;
   end
-   
-  chdir(path);
   
 endfunction

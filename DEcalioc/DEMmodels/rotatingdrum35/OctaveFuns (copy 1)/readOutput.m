@@ -19,41 +19,39 @@
 % You should have received a copy of the GNU General Public License
 % along with DEcalioc. If not, see <http://www.gnu.org/licenses/>.
 % ----------------------------------------------------------------------
+%
+% Modified by Tim Churchfield
+% Last updated: 13/11/2019
+%
+% ----------------------------------------------------------------------
 
-function startSimulation(model,folderName)
+function A = readOutput(model, folderName)
   % INFO
-  % Starts the simulation through the bash-file "runscript"
-  %
+  % Reads the average and non-linear dynamic angles of repose for three
+  % different rotational speeds from the AngleRepose.txt output file.
+  % 
   % args:
-  %   - model: model name
-  %   - folderName: folder in which runscript lies
+  %   - model: model's name
+  %   - folderName: name of the folder where the corresponding results file is stored
   % returns:
-  %   none
+  %   - A: dynamic angles of repose
   
   global path;
-  
-  % change directory and start simulation
-  % info: unix(...) waits until the simulation has finished
-  pause(60);
-  chdir([path, 'optim/', model, '/', folderName, '/']);    
-  status = unix(['cd ', path, 'optim/', model, '/', folderName, ';',...
-    ' /opt/torque/bin/qsub job.sh']);  
-
-  % Query output.txt file existence
-  command = ['cd ', path, 'optim/', model, '/', folderName, ';',...
-    ' test -e ', folderName,'_output.txt && echo 1 || echo 0'];
     
-  j = [];
-  while isempty(j)
-    [~,cmd_out] = system(command);
-    if str2double(cmd_out) == 1
-      j = 1;
-      disp(['Log file found for', model, ', ', folderName]);
-      break
-    end
-    pause(120);
-  end
-   
-  chdir(path);
+  % open angleRepose.txt file
+  fd = fopen([path, 'optim/', model, '/', folderName, '/analysis/', folderName, '_angleRepose.txt'], 'r');
   
+  % Read file into cell A
+  i = 1;
+  tline = fgetl(fd);
+  A{i} = tline;
+  while ischar(tline)
+    i = i+1;
+    tline = fgetl(fd);
+    A{i} = tline;
+  end
+  
+  % Close file
+  fclose(fd);
+
 endfunction
