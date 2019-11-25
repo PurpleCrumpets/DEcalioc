@@ -63,7 +63,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
   samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
   numVar               =   21; % 21 Design Variables
-  Input.numOfSam       =   100; %samplesPerVar*numVar; % samples PER model
+  Input.numOfSam       =   50; %samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
