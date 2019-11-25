@@ -42,11 +42,13 @@ function [this_procs_res] = Start(matr, model)
     
     % start i-th run and store result
     res = runScript(matr(i,:), model{matr(i,end)});
-    disp('finished runScript function');
+
     % save results
+    disp('saving results');
     for j = 1:length(res)
-      this_procs_res(j,i) = res{j};
+      this_procs_res(j,i) = res{j} %;
+      disp(['results saved for loop ', num2str(j)]);
     endfor
   endfor
-  
+  disp('ALL results saved in Start function');
 endfunction
