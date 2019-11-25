@@ -42,7 +42,7 @@ function [this_procs_res] = Start(matr, model)
     
     % start i-th run and store result
     res = runScript(matr(i,:), model{matr(i,end)});
-    
+    disp('finished runScript function');
     % save results
     for j = 1:length(res)
       this_procs_res(j,i) = res{j};

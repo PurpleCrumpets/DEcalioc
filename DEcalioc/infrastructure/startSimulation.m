@@ -34,7 +34,6 @@ function startSimulation(model,folderName)
   
   % change directory and start simulation
   % info: unix(...) waits until the simulation has finished
-  pause(60);
   chdir([path, 'optim/', model, '/', folderName, '/']);    
   status = unix(['cd ', path, 'optim/', model, '/', folderName, ';',...
     ' /opt/torque/bin/qsub job.sh']);  
@@ -48,7 +47,7 @@ function startSimulation(model,folderName)
     [~,cmd_out] = system(command);
     if str2double(cmd_out) == 1
       j = 1;
-      disp(['Log file found for', model, ', ', folderName]);
+      disp(['Log file found for ', model, '/', folderName]);
       break
     end
     pause(120);

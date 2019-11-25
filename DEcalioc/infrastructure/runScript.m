@@ -70,13 +70,14 @@ function results = runScript(matr, model)
     disp(["Unable to run ", newFolderName, " - ", model]);
     disp("Skipping to next file");
   end
-  
+  disp('Finished startSimulation Function');
   %*****************************************************************************
   %//	PROCESS RESULTS
   %*****************************************************************************
   % calculate results based on DEM-Simulation (these are used in the cost function)
   addpath([path, 'DEMmodels/', model, '/OctaveFuns']);
   results = getResults(model, newFolderName);
+  disp(['results obtained for ',  model, '/', newFolderName]);
   rmpath([path, 'DEMmodels/', model, '/OctaveFuns']);
   
 endfunction
