@@ -49,5 +49,5 @@ function [this_procs_res] = Start(matr, model)
       this_procs_res(j,i) = res{j};
     endfor
   endfor
-  disp('ALL results saved in Start function');
+
 endfunction
