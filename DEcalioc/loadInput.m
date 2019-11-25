@@ -57,13 +57,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             run. Currently used to represent the number of
   %                             jobs that can be submitted to the cluster at a
   %                             time. 
-  Input.maxCPU         =   40; % Hard limit of cluster: 512 
+  Input.maxCPU         =   100; % Hard limit of cluster: 512 
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
   samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
   numVar               =   21; % 21 Design Variables
-  Input.numOfSam       =   50; %samplesPerVar*numVar; % samples PER model
+  Input.numOfSam       =   100; %samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -95,12 +95,12 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.targetVal{1}(6) =   50.0; % non-linear
   
   % rotatingdrum35
-  optim.targetVal{1}(1) =   25.0; % average
-  optim.targetVal{1}(2) =   25.0; % non-linear
-  optim.targetVal{1}(3) =   40.0; % average
-  optim.targetVal{1}(4) =   40.0; % non-linear
-  optim.targetVal{1}(5) =   55.0; % average
-  optim.targetVal{1}(6) =   55.0; % non-linear
+  optim.targetVal{1}(1) =   05.0; % average
+  optim.targetVal{1}(2) =   05.0; % non-linear
+  optim.targetVal{1}(3) =   33.0; % average
+  optim.targetVal{1}(4) =   33.0; % non-linear
+  optim.targetVal{1}(5) =   50.0; % average
+  optim.targetVal{1}(6) =   50.0; % non-linear
   
   % rotatingdrum50
 %  optim.targetVal{2}(1) =   30.0; % average
@@ -120,12 +120,12 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.tolRes{1}(6)   =   0.01; % non-linear
   
   % rotatingdrum35
-  optim.tolRes{1}(1)   =   0.01; % average
-  optim.tolRes{1}(2)   =   0.01; % non-linear
-  optim.tolRes{1}(3)   =   0.01; % average
-  optim.tolRes{1}(4)   =   0.01; % non-linear
-  optim.tolRes{1}(5)   =   0.01; % average
-  optim.tolRes{1}(6)   =   0.01; % non-linear
+  optim.tolRes{1}(1)   =   0.1; %0.01; % average
+  optim.tolRes{1}(2)   =   0.1; %0.01; % non-linear
+  optim.tolRes{1}(3)   =   0.1; %0.01; % average
+  optim.tolRes{1}(4)   =   0.1; %0.01; % non-linear
+  optim.tolRes{1}(5)   =   0.1; %0.01; % average
+  optim.tolRes{1}(6)   =   0.1; %0.01; % non-linear
   
   % rotatingdrum50
 %  optim.tolRes{3}(1)   =   0.01; % average
@@ -137,7 +137,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 
 
   
-  optim.tolfun        =   0.002; % Default: 0.002
+  optim.tolfun        =   0.02; % Default: 0.002
   optim.maxIter       =   3;     % Default: 3
   optim.maxFunEvals   =   40;    % Default: 40
   
