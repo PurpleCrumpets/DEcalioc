@@ -44,8 +44,10 @@ function [this_procs_res] = Start(matr, model)
     res = runScript(matr(i,:), model{matr(i,end)});
 
     % save results
-    disp('saving results');
+    
     for j = 1:length(res)
+      disp(num2str(j));
+      disp(['saving results for loop ', num2str(j)]);
       this_procs_res(j,i) = res{j};
       disp(['results saved for loop ', num2str(j)]);
     endfor
