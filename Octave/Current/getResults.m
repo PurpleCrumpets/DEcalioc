@@ -40,13 +40,13 @@ function res = getResults(model, folderName)
   %          (1,3,5) and the non-linear average dynamic angle of repose (2,4,6).
   
   try
-    A = readOutput(model, folderName);
-    res{1} = A{1};
-    res{2} = A{2};
-    res{3} = A{3};
-    res{4} = A{4};
-    res{5} = A{5};
-    res{6} = A{6};
+    A = readOutput(model, folderName);    
+    res{1} = str2num(A{1});
+    res{2} = str2num(A{2});
+    res{3} = str2num(A{3});
+    res{4} = str2num(A{4});
+    res{5} = str2num(A{5});
+    res{6} = str2num(A{6});
   catch
     res{1} = NaN;
     res{2} = NaN;

@@ -7,7 +7,9 @@
 
 cd path
 
-mpirun -np 0 ~/MYLIGGGHTS/src/lmp_auto < in.rotatingdrum
+mkdir post images analysis
+
+mpirun -np 0 ~/MYLIGGGHTS/src/lmp_auto < in.rotatingdrumRestart
 
 cd OctaveFuns/
 

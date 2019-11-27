@@ -25,35 +25,33 @@
 %
 % ----------------------------------------------------------------------
 
-function res = getResults(model, folderName)
+function A = readOutput(model, folderName)
   % INFO
-  % Calculate the angle of repsonse and the bulk density based on the results
-  % of the DEM-Simulation.
-  % Returns NaN if calculation throws an error.
-  %
+  % Reads the average and non-linear dynamic angles of repose for three
+  % different rotational speeds from the AngleRepose.txt output file.
+  % 
   % args:
   %   - model: model's name
-  %   - folderName: name of the folder where the simulation output has been written
-  %                 i.e. the simulation has been run
+  %   - folderName: name of the folder where the corresponding results file is stored
   % returns:
-  %   - res: scalar structure containg the average dynamic angle of repose 
-  %          (1,3,5) and the non-linear average dynamic angle of repose (2,4,6).
+  %   - A: dynamic angles of repose
   
-  try
-    A = readOutput(model, folderName);    
-    res{1} = str2num(A{1});
-    res{2} = str2num(A{2});
-    res{3} = str2num(A{3});
-    res{4} = str2num(A{4});
-    res{5} = str2num(A{5});
-    res{6} = str2num(A{6});
-  catch
-    res{1} = NaN;
-    res{2} = NaN;
-    res{3} = NaN;
-    res{4} = NaN;
-    res{5} = NaN;
-    res{6} = NaN;
+  global path;
+    
+  % open angleRepose.txt file
+  fd = fopen([path, 'optim/', model, '/', folderName, '/analysis/', folderName, '_angleRepose.txt'], 'r');
+  
+  % Read file into cell A
+  i = 1;
+  tline = fgetl(fd);
+  A{i} = tline;
+  while ischar(tline)
+    i = i+1;
+    tline = fgetl(fd);
+    A{i} = tline;
   end
   
+  % Close file
+  fclose(fd);
+
 endfunction

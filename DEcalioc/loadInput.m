@@ -41,15 +41,15 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.cpu(k,1)         : CPUs used in a run of the k-th model
   
   %              Simulation Primary Settings:  Filling degree
-%  Input.model{1}       =   'rotatingdrum20'; %  0.20       
-  Input.model{1}       =   'rotatingdrum35'; %  0.35      
-%  Input.model{3}       =   'rotatingdrum50'; %  0.50      
-
+  Input.model{1}       =   'rotatingdrum20'; %  0.20       
+  Input.model{2}       =   'rotatingdrum35'; %  0.35      
+  Input.model{3}       =   'rotatingdrum50'; %  0.50      
+%  Input.model{1}       =   'rotatingdrumCalibrationTest'; %  0.20
   
-%  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
   Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
-%  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
-
+  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
+  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
+%  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
   
   
   % User-specific input
@@ -57,13 +57,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             run. Currently used to represent the number of
   %                             jobs that can be submitted to the cluster at a
   %                             time. 
-  Input.maxCPU         =   100; % Hard limit of cluster: 512 
+  Input.maxCPU         =   250; % Hard limit of cluster: 512 
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
-  samplesPerVar        =   10; % Recommended 5 to 10 by Rackl
+  samplesPerVar        =   5; % Recommended 5 to 10 by Rackl
   numVar               =   21; % 21 Design Variables
-  Input.numOfSam       =   100; %samplesPerVar*numVar; % samples PER model
+  Input.numOfSam       =   100%samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -87,61 +87,73 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
   
   % rotatingdrum20
-%  optim.targetVal{1}(1) =   30.0; % average
-%  optim.targetVal{1}(2) =   30.0; % non-linear
-%  optim.targetVal{1}(3) =   40.0; % average
-%  optim.targetVal{1}(4) =   40.0; % non-linear
-%  optim.targetVal{1}(5) =   50.0; % average
-%  optim.targetVal{1}(6) =   50.0; % non-linear
-  
-  % rotatingdrum35
-  optim.targetVal{1}(1) =   05.0; % average
-  optim.targetVal{1}(2) =   05.0; % non-linear
-  optim.targetVal{1}(3) =   33.0; % average
-  optim.targetVal{1}(4) =   33.0; % non-linear
+  optim.targetVal{1}(1) =   30.0; % average
+  optim.targetVal{1}(2) =   30.0; % non-linear
+  optim.targetVal{1}(3) =   40.0; % average
+  optim.targetVal{1}(4) =   40.0; % non-linear
   optim.targetVal{1}(5) =   50.0; % average
   optim.targetVal{1}(6) =   50.0; % non-linear
   
-  % rotatingdrum50
-%  optim.targetVal{2}(1) =   30.0; % average
-%  optim.targetVal{2}(2) =   30.0; % non-linear
-%  optim.targetVal{2}(3) =   40.0; % average
-%  optim.targetVal{2}(4) =   40.0; % non-linear
-%  optim.targetVal{2}(5) =   50.0; % average
-%  optim.targetVal{2}(6) =   50.0; % non-linear
-
+  % rotatingdrum35
+  optim.targetVal{2}(1) =   32.6; % average
+  optim.targetVal{2}(2) =   37.9; % non-linear
+  optim.targetVal{2}(3) =   36.7; % average
+  optim.targetVal{2}(4) =   45.2; % non-linear
+  optim.targetVal{2}(5) =   41.8; % average
+  optim.targetVal{2}(6) =   54.3; % non-linear
   
+  % rotatingdrum50
+  optim.targetVal{3}(1) =   30.0; % average
+  optim.targetVal{3}(2) =   30.0; % non-linear
+  optim.targetVal{3}(3) =   40.0; % average
+  optim.targetVal{3}(4) =   40.0; % non-linear
+  optim.targetVal{3}(5) =   50.0; % average
+  optim.targetVal{3}(6) =   50.0; % non-linear
+
+  % rotatingdrumCalibrationTest
+%  optim.targetVal{1}(1) =   30.0; % average angle at 1 rpm 
+%  optim.targetVal{1}(2) =   30.0; % average angle at 3 rpm
+%  optim.targetVal{1}(3) =   40.0; % average angle at 5 rpm
+
   % rotatingdrum20
-%  optim.tolRes{1}(1)   =   0.01; % average
-%  optim.tolRes{1}(2)   =   0.01; % non-linear
-%  optim.tolRes{1}(3)   =   0.01; % average
-%  optim.tolRes{1}(4)   =   0.01; % non-linear
-%  optim.tolRes{1}(5)   =   0.01; % average
-%  optim.tolRes{1}(6)   =   0.01; % non-linear
+  optim.tolRes{1}(1)   =   0.01; % tolerance for average
+  optim.tolRes{1}(2)   =   0.01; % tolerance for non-linear
+  optim.tolRes{1}(3)   =   0.01; % tolerance for average
+  optim.tolRes{1}(4)   =   0.01; % tolerance for non-linear
+  optim.tolRes{1}(5)   =   0.01; % tolerance for average
+  optim.tolRes{1}(6)   =   0.01; % tolerance for non-linear
   
   % rotatingdrum35
-  optim.tolRes{1}(1)   =   0.1; %0.01; % average
-  optim.tolRes{1}(2)   =   0.1; %0.01; % non-linear
-  optim.tolRes{1}(3)   =   0.1; %0.01; % average
-  optim.tolRes{1}(4)   =   0.1; %0.01; % non-linear
-  optim.tolRes{1}(5)   =   0.1; %0.01; % average
-  optim.tolRes{1}(6)   =   0.1; %0.01; % non-linear
+  optim.tolRes{2}(1)   =   0.1; %0.01; % tolerance for average
+  optim.tolRes{2}(2)   =   0.1; %0.01; % tolerance for non-linear
+  optim.tolRes{2}(3)   =   0.1; %0.01; % tolerance for average
+  optim.tolRes{2}(4)   =   0.1; %0.01; % tolerance for non-linear
+  optim.tolRes{2}(5)   =   0.1; %0.01; % tolerance for average
+  optim.tolRes{2}(6)   =   0.1; %0.01; % tolerance for non-linear
   
   % rotatingdrum50
-%  optim.tolRes{3}(1)   =   0.01; % average
-%  optim.tolRes{3}(2)   =   0.01; % non-linear
-%  optim.tolRes{3}(3)   =   0.01; % average
-%  optim.tolRes{3}(4)   =   0.01; % non-linear
-%  optim.tolRes{3}(5)   =   0.01; % average
-%  optim.tolRes{3}(6)   =   0.01; % non-linear
+  optim.tolRes{3}(1)   =   0.01; % tolerance for average
+  optim.tolRes{3}(2)   =   0.01; % tolerance for non-linear
+  optim.tolRes{3}(3)   =   0.01; % tolerance for average
+  optim.tolRes{3}(4)   =   0.01; % tolerance for non-linear
+  optim.tolRes{3}(5)   =   0.01; % tolerance for average
+  optim.tolRes{3}(6)   =   0.01; % tolerance for non-linear
 
-
+  % rotatingdrumCalibrationTest
+%  optim.tolRes{1}(1)   =   0.01; % tolerance for average angle at 1 rpm
+%  optim.tolRes{1}(2)   =   0.01; % tolerance for average angle at 3 rpm
+%  optim.tolRes{1}(3)   =   0.01; % tolerance for average angle at 5 rpm
+  
   
   optim.tolfun        =   0.02; % Default: 0.002
   optim.maxIter       =   3;     % Default: 3
   optim.maxFunEvals   =   40;    % Default: 40
   
   optim.WRL           =   0;     % Default: 0.5 (0 = off)
+  % If optim.WRL is set not equal to zero, please see the costFunction function 
+  % and uncomment line 56 and comment out line 57 for the Rayleigh timestep to 
+  % be considered. The variable modelVars defined below will also need to be
+  % updated accordingly.
   
   
   %*****************************************************************************
@@ -161,11 +173,11 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   % to the data.head but will not make any difference as these variables are not 
   % used anywhere in the main script.  
   
-  modelVars.poissonsRatioP    = 0.30; % Not in use
-  modelVars.radiusP           = 2e-3; % Not in use
-  modelVars.youngsModulusP    = 5e6;  % Not in use 
-  modelVars.densityP          = 1000; % Not in use
-  modelVars.percentRayleigh   = 0.35; % Not in use
+  modelVars.poissonsRatioP    = 0.30; % Not in use (optim.WRL = 0)
+  modelVars.radiusP           = 2e-3; % Not in use (optim.WRL = 0)
+  modelVars.youngsModulusP    = 5e6;  % Not in use (optim.WRL = 0)
+  modelVars.densityP          = 1000; % Not in use (optim.WRL = 0)
+  modelVars.percentRayleigh   = 0.35; % Not in use (optim.WRL = 0)
   
   
   % Design variables
@@ -201,19 +213,22 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   % Boundaries of the feasible region
   %   -> first row min-values, second row max-values
-  %   -> columns according to cell struct 'assign'            
+  %   -> columns according to cell struct 'assign' 
+  
+  % Row 1: CoR Min
+  % Row 2: CoF Min 
+  % Row 3: CoRF Min
+  % Row 4: CoR Max
+  % Row 5: CoF Max 
+  % Row 6: CoRF Max  
+  
   paramLims = [0.06  0.06  0.06  0.06  0.06  0.06  0.06   ... 
                0.2   0.2   0.2   0.2   0.2   0.2   0.2    ... 
                0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... 
                0.95  0.95  0.95  0.95  0.95  0.95  0.95   ... 
                1.4   1.4   1.4   1.4   1.4   1.4   1.4    ... 
                0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %
-  % Row 1: CoR Min
-  % Row 2: CoF Min 
-  % Row 3: CoRF Min
-  % Row 4: CoR Max
-  % Row 5: CoF Max 
-  % Row 6: CoRF Max
+
   
   %*****************************************************************************
   %//	END
