@@ -63,7 +63,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
   samplesPerVar        =   5; % Recommended 5 to 10 by Rackl
   numVar               =   21; % 21 Design Variables
-  Input.numOfSam       =   100%samplesPerVar*numVar; % samples PER model
+  Input.numOfSam       =   100;%samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -81,7 +81,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             if the costfunction's change is below Input.tolfun
   %  - optim.maxIter          : third stopping criteria, optimization run stops
   %                             if the number of iterations exceeds Input.maxIter 
-  %  - optim.maxIter          : fourth stopping criteria, optimization run stops
+  %  - optim.maxFunEvals      : fourth stopping criteria, optimization run stops
   %                             if the number of function evaluations exceeds
   %                             Input.maxFunEvals
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
