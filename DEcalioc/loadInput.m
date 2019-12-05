@@ -149,7 +149,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   % be considered. The variable modelVars defined below will also need to be
   % updated accordingly.
    
-  
+
   %*****************************************************************************
   %//	input - MODEL VARIABLES and DESIGN VARIABLES
   %*****************************************************************************
