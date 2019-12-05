@@ -40,19 +40,30 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.model{k}         : name of k-th model, n models in total
   %  - Input.cpu(k,1)         : CPUs used in a run of the k-th model
   
-  Input.model{1}       =   'Lift100';
-  %Input.model{2}       =   'Lift102';
-  Input.cpu(1,1)       =   4; % Default 1
-  %Input.cpu(2,1)       =   1;
+  %              Simulation Primary Settings:  Filling degree
+  Input.model{1}       =   'rotatingdrum20'; %  0.20       
+  Input.model{2}       =   'rotatingdrum35'; %  0.35      
+  Input.model{3}       =   'rotatingdrum50'; %  0.50      
+%  Input.model{1}       =   'rotatingdrumCalibrationTest'; %  0.20
+  
+  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
+  Input.cpu(2,1)       =   1; % Leave as 1 (legacy)
+  Input.cpu(3,1)       =   1; % Leave as 1 (legacy)
+%  Input.cpu(1,1)       =   1; % Leave as 1 (legacy)
   
   
   % User-specific input
-  %  - Input.maxCPU           : maximum count of CPUs used during the whole run
-  Input.maxCPU         =   44;
+  %  - Input.maxCPU           : (OG) maximum count of CPUs used during the whole
+  %                             run. Currently used to represent the number of
+  %                             jobs that can be submitted to the cluster at a
+  %                             time. 
+  Input.maxCPU         =   250; % Hard limit of cluster: 512 
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
-  Input.numOfSam       =   21;
+  samplesPerVar        =   5; % Recommended 5 to 10 by Rackl
+  numVar               =   21; % 21 Design Variables
+  Input.numOfSam       =   samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -70,30 +81,75 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             if the costfunction's change is below Input.tolfun
   %  - optim.maxIter          : third stopping criteria, optimization run stops
   %                             if the number of iterations exceeds Input.maxIter 
-  %  - optim.maxIter          : fourth stopping criteria, optimization run stops
+  %  - optim.maxFunEvals      : fourth stopping criteria, optimization run stops
   %                             if the number of function evaluations exceeds
   %                             Input.maxFunEvals
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
   
-  optim.targetVal{1}(1) =   420;
-%  optim.targetVal{1}(2) =   0.02; % Default in use
-  %optim.targetVal{2}(1) =   15;
-  %optim.targetVal{2}(2) =   709;
-  %optim.targetVal{2}(3) =   0.58;
+  % The average angle of repose obtained for the middle simulation
+  % (35% filling degree, 20 RPM). The simulation that provided the closest
+  % results was 0001jpa_45752. The corresponding set of parameters for 
+  % this simulation were found for the other filling degrees 
+  % rotatingdrum20
+  optim.targetVal{1}(1) =   32.6; % average
+%  optim.targetVal{1}(2) =   37.9; % non-linear
+  optim.targetVal{1}(2) =   36.2; % average
+%  optim.targetVal{1}(4) =   44.6; % non-linear
+  optim.targetVal{1}(3) =   40.6; % average
+%  optim.targetVal{1}(6) =   50.6; % non-linear
   
-  optim.tolRes{1}(1)   =   0.01;
-%  optim.tolRes{1}(2)   =   0.01; % Default in use
-  %optim.tolRes{2}(1)   =   0.02;
-  %optim.tolRes{2}(2)   =   0.05;
-  %optim.tolRes{2}(3)   =   0.01;
+  % rotatingdrum35
+  optim.targetVal{2}(1) =   33.6; % average
+%  optim.targetVal{2}(2) =   37.3; % non-linear
+  optim.targetVal{2}(2) =   37.2; % average
+%  optim.targetVal{2}(4) =   45.2; % non-linear
+  optim.targetVal{2}(3) =   42.2; % average
+%  optim.targetVal{2}(6) =   54.1; % non-linear
   
-  optim.tolfun        =   0.002;
-  optim.maxIter       =   3;
-  optim.maxFunEvals   =   40;
+  % rotatingdrum50
+  optim.targetVal{3}(1) =   33.4; % average
+%  optim.targetVal{3}(2) =   37.8; % non-linear
+  optim.targetVal{3}(3) =   38.1; % average
+%  optim.targetVal{3}(4) =   46.1; % non-linear
+  optim.targetVal{3}(5) =   42.8; % average
+%  optim.targetVal{3}(6) =   53.3; % non-linear
+
+  % rotatingdrum20
+  optim.tolRes{1}(1)   =   1.5/optim.targetVal{1}(1); % tolerance for average (0.01-0.05 default)
+%  optim.tolRes{1}(2)   =   0.04; % tolerance for non-linear (fraction of optim.targetVal)
+  optim.tolRes{1}(2)   =   1.5/optim.targetVal{1}(2); % tolerance for average     
+%  optim.tolRes{1}(4)   =   0.04; % tolerance for non-linear       
+  optim.tolRes{1}(3)   =   1.5/optim.targetVal{1}(3); % tolerance for average           
+%  optim.tolRes{1}(6)   =   0.04; % tolerance for non-linear        
   
-  optim.WRL           =   0; % Default 0.5
+  % rotatingdrum35
+  optim.tolRes{2}(1)   =   1.5/optim.targetVal{2}(1); %0.01; % tolerance for average     
+%  optim.tolRes{2}(2)   =   0.04; %0.01; % tolerance for non-linear 
+  optim.tolRes{2}(2)   =   1.5/optim.targetVal{2}(2); %0.01; % tolerance for average   
+%  optim.tolRes{2}(4)   =   0.04; %0.01; % tolerance for non-linear
+  optim.tolRes{2}(3)   =   1.5/optim.targetVal{2}(3); %0.01; % tolerance for average    
+%  optim.tolRes{2}(6)   =   0.04; %0.01; % tolerance for non-linear
   
+  % rotatingdrum50
+  optim.tolRes{3}(1)   =   1.5/optim.targetVal{3}(1); % tolerance for average         
+%  optim.tolRes{3}(2)   =   0.04; % tolerance for non-linear       
+  optim.tolRes{3}(2)   =   1.5/optim.targetVal{3}(2); % tolerance for average           
+%  optim.tolRes{3}(4)   =   0.04; % tolerance for non-linear      
+  optim.tolRes{3}(3)   =   1.5/optim.targetVal{3}(3); % tolerance for average            
+%  optim.tolRes{3}(6)   =   0.04; % tolerance for non-linear        
+ 
   
+  optim.tolfun        =   0.002; % Default: 0.002 (believe this is relative??)
+  optim.maxIter       =   1;     % Default: 3
+  optim.maxFunEvals   =   5;    % Default: 40
+  
+  optim.WRL           =   0;     % Default: 0.5 (0 = off)
+  % If optim.WRL is set not equal to zero, please see the costFunction function 
+  % and uncomment line 56 and comment out line 57 for the Rayleigh timestep to 
+  % be considered. The variable modelVars defined below will also need to be
+  % updated accordingly.
+   
+
   %*****************************************************************************
   %//	input - MODEL VARIABLES and DESIGN VARIABLES
   %*****************************************************************************
@@ -105,36 +161,68 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %            specified here as fixed model variables or must be defined 
   %            later on as design variables!
   
-  modelVars.coefRestitutionPP = 0.60;
-  modelVars.coefRestitutionPW = 0.69;
-  modelVars.poissonsRatioP    = 0.30;
-  modelVars.radiusP           = 2e-3;
-  modelVars.youngsModulusP    = 5e6;
   
-  modelVars.percentRayleigh   = 0.35;
+  % As the weighting factor of the Rayleigh time step is zero 
+  % (optim.WRL = 0), the modelVars are not necessary. They will be written to 
+  % to the data.head but will not make any difference as these variables are not 
+  % used anywhere in the main script.
+  
+  modelVars.poissonsRatioP    = 0.30; % Not in use (optim.WRL = 0)
+  modelVars.radiusP           = 2e-3; % Not in use (optim.WRL = 0)
+  modelVars.youngsModulusP    = 5e6;  % Not in use (optim.WRL = 0)
+  modelVars.densityP          = 1000; % Not in use (optim.WRL = 0)
+  modelVars.percentRayleigh   = 0.35; % Not in use (optim.WRL = 0)
   
   
   % Design variables
   %   - assign: cell struct which assigns variable names to the design variables 
-  %     (1) densityP
-  %     (2) poissonsRatioP  
-  %     (3) coefFrictionPP
-  %     (4) coefFrictionPW
-  %     (5) coefRollingFrictionPP
-  %     (6) coefRollingFrictionPW
-  assign{1} = "densityP";
-  assign{2} = "coefFrictionPP";
-  assign{3} = "coefFrictionPW";
-  assign{4} = "coefRollingFrictionPP";
-  assign{5} = "coefRollingFrictionPW";
+  
+  % Coefficient of Restitution
+  assign{1} = "COR_PP_PP";
+  assign{2} = "COR_PP_GL";
+  assign{3} = "COR_PP_DW";
+  assign{4} = "COR_PP_DE1";
+  assign{5} = "COR_GL_GL";
+  assign{6} = "COR_GL_DW";
+  assign{7} = "COR_GL_DE1";
+  
+  % Coefficient of Friction
+  assign{8} = "CoF_PP_PP";
+  assign{9} = "CoF_PP_GL";
+  assign{10} = "CoF_PP_DW";
+  assign{11} = "CoF_PP_DE1";
+  assign{12} = "CoF_GL_GL";
+  assign{13} = "CoF_GL_DW";
+  assign{14} = "CoF_GL_DE1"; 
+  
+  % Coefficient of Rolling Friction
+  assign{15} = "CoRF_PP_PP";
+  assign{16} = "CoRF_PP_GL";
+  assign{17} = "CoRF_PP_DW";
+  assign{18} = "CoRF_PP_DE1";
+  assign{19} = "CoRF_GL_GL";
+  assign{20} = "CoRF_GL_DW";
+  assign{21} = "CoRF_GL_DE1";
   
   
   % Boundaries of the feasible region
   %   -> first row min-values, second row max-values
-  %   -> columns according to cell struct 'assign'
-  paramLims = [500  0.3 0.3 0.025 0.025;
-               800 0.7 0.7 0.075 0.075];
+  %   -> columns according to cell struct 'assign' 
   
+  % Row 1: CoR Min
+  % Row 2: CoF Min 
+  % Row 3: CoRF Min
+  % Row 4: CoR Max
+  % Row 5: CoF Max 
+  % Row 6: CoRF Max  
+  
+  paramLims = [0.06  0.06  0.06  0.06  0.06  0.06  0.06   ... 
+               0.2   0.2   0.2   0.2   0.2   0.2   0.2    ... 
+               0.001 0.001 0.001 0.001 0.001 0.001 0.001; ... 
+               0.95  0.95  0.95  0.95  0.95  0.95  0.95   ... 
+               1.4   1.4   1.4   1.4   1.4   1.4   1.4    ... 
+               0.02  0.02  0.02  0.02  0.02  0.02  0.02]; %
+
   
   %*****************************************************************************
   %//	END

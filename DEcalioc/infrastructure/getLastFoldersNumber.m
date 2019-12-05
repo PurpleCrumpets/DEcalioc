@@ -39,7 +39,7 @@ function number = getLastFoldersNumber(path, model)
     number = str2num(substr(lastFoldersName,1,4));
     if (number > 9000)
       number = 0;
-      disp('WARNING: foldersNumber over 9000!')
+      disp('WARNING: foldersNumber over 9000!');
     endif
   endif
   

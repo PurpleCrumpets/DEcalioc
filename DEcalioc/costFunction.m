@@ -53,6 +53,6 @@ function residual = costFunction(params, evaluateFunc, varargin)
   
   % second part:
   %  - weighted and scaled Rayleigh time step of the current iteration
-  residual(end+1) = optim.WRL * ((RLTS.max - modelVars.RLTS) / (RLTS.max - RLTS.min));
-  
+%  residual(end+1) = optim.WRL * ((RLTS.max - modelVars.RLTS) / (RLTS.max - RLTS.min));
+  residual(end+1) = optim.WRL;
 endfunction

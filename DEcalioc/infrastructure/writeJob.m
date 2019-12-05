@@ -59,8 +59,7 @@ function writeJob(model, folderName)
   A{5} = strrep(A{5},'DEM',folderName);
   
   % Change path (line 8)
-  A{9} = strrep(A{9},'path',[path, 'optim/', model, '/', folderName]);
-  A{10} = strrep(A{10},'path',[path, 'optim/', model, '/', folderName]);
+  A{8} = strrep(A{8},'path',[path, 'optim/', model, '/', folderName]);
   
   % Write cell A into job.sh 
   fd = fopen([path, 'optim/', model, '/', folderName, '/job.sh'], 'w'); 

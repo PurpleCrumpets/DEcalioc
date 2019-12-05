@@ -97,7 +97,7 @@ for k = 1:max(size(Input.model))
   [~, NaN_runs{k}] = find(isnan(results_all{k}));
   
   for i = 1:length(NaN_runs{k})
-    disp(["Warning: NaN_runs...", num2str(NaN_runs{k}(i))])
+    disp(["Warning: NaN_runs...", num2str(NaN_runs{k}(i))]);
   endfor
   
 endfor
@@ -150,10 +150,10 @@ endfor
 for i = 1:length(RePath)
   tmp = csvread(RePath{i});
   if (min(tmp) > optim.targetVal(i) || max(tmp) < optim.targetVal(i))
-    disp('WARNING from Kriging optimisation:')
-    disp('The desired DEM model result lies outside of the boundaries of the initial DEM results.')
-    disp(['Minimum in ' RePath{i} ' is ' num2str(min(tmp)) ', maximum is ' num2str(max(tmp)) ','])
-    disp(['but your desired result is ' num2str(optim.targetVal(i))])
+    disp('WARNING from Kriging optimisation:');
+    disp('The desired DEM model result lies outside of the boundaries of the initial DEM results.');
+    disp(['Minimum in ' RePath{i} ' is ' num2str(min(tmp)) ', maximum is ' num2str(max(tmp)) ',']);
+    disp(['but your desired result is ' num2str(optim.targetVal(i))]);
   endif
 endfor
 

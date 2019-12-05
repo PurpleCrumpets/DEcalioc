@@ -66,15 +66,15 @@ function [KrigingFunNames,varargout] = createKrigingModels(ExPlanFiles,RespFiles
     else
       disp(['WARNING: The number of Parameters in ParamLims is ' num2str(size(ParamLims,2)) ...
         ', while it is ' num2str(size(csvread(ExPlanFiles{i}),2)) ' in the LHS plan.']);
-      disp('This message was generated from function createKrigingModels.m')
+      disp('This message was generated from function createKrigingModels.m');
     endif
   % compare the length of the result files with the length of the LHS plans
     if length(csvread(RespFiles{i}))==size(csvread(ExPlanFiles{i}),1)
       % everything is fine
     else
-      disp(['WARNING: The result vector for result number ' num2str(i) ' is shorter or longer than the LHS plan.'])
-      disp('This indicates that there are missing results.')
-      disp('This message was generated from function createKrigingModels.m')
+      disp(['WARNING: The result vector for result number ' num2str(i) ' is shorter or longer than the LHS plan.']);
+      disp('This indicates that there are missing results.');
+      disp('This message was generated from function createKrigingModels.m');
     endif
   endfor
   % sanity checks done
@@ -85,12 +85,12 @@ function [KrigingFunNames,varargout] = createKrigingModels(ExPlanFiles,RespFiles
   NoFact = columns(ParamLims);
   if nargin() == 5
     model = stk_model(varargin{2}, NoFact);
-    disp(['Kriging model is ' varargin{2}])
+    disp(['Kriging model is ' varargin{2}]);
   else
     % no optional arguments --> use default model
     % initiate a generic anisotropic Matern covariance function as default
     model = stk_model('stk_materncov_aniso', NoFact);
-    disp('Kriging model is stk_materncov_aniso (default)')
+    disp('Kriging model is stk_materncov_aniso (default)');
   end
   
   %###########################################################################
@@ -99,18 +99,18 @@ function [KrigingFunNames,varargout] = createKrigingModels(ExPlanFiles,RespFiles
   if nargin() > 3
     % if at least the model order is specified
     model.lm = eval(varargin{1});
-    disp(['with trend function = ' varargin{1}])
+    disp(['with trend function = ' varargin{1}]);
   else
     % no extra arguments
     model.lm = stk_lm_affine;  % linear trend as default
-    disp('with linear trend.')
-    disp(' ')
+    disp('with linear trend.');
+    disp(' ');
   end
   
   %###########################################################################
   % delete and recreate function folder
   %###########################################################################
-  confirm_recursive_rmdir(0, "local")
+  confirm_recursive_rmdir(0, "local");
   rmdir('KrigingFuns','s');
   mkdir('KrigingFuns');
   
