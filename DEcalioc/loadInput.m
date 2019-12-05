@@ -86,65 +86,69 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             Input.maxFunEvals
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
   
+  % The average angle of repose obtained for the middle simulation
+  % (35% filling degree, 20 RPM). The simulation that provided the closest
+  % results was 0001jpa_45752. The corresponding set of parameters for 
+  % this simulation were found for the other filling degrees 
   % rotatingdrum20
-  optim.targetVal{1}(1) =   32.5; % average
-%  optim.targetVal{1}(2) =   37.3; % non-linear
-  optim.targetVal{1}(2) =   36.3; % average
-%  optim.targetVal{1}(4) =   43.6; % non-linear
-  optim.targetVal{1}(3) =   40.4; % average
-%  optim.targetVal{1}(6) =   50.3; % non-linear
+  optim.targetVal{1}(1) =   32.6; % average
+%  optim.targetVal{1}(2) =   37.9; % non-linear
+  optim.targetVal{1}(2) =   36.2; % average
+%  optim.targetVal{1}(4) =   44.6; % non-linear
+  optim.targetVal{1}(3) =   40.6; % average
+%  optim.targetVal{1}(6) =   50.6; % non-linear
   
   % rotatingdrum35
-  optim.targetVal{2}(1) =   33.1; % average
-%  optim.targetVal{2}(2) =   38.4; % non-linear
+  optim.targetVal{2}(1) =   33.6; % average
+%  optim.targetVal{2}(2) =   37.3; % non-linear
   optim.targetVal{2}(2) =   37.2; % average
-%  optim.targetVal{2}(4) =   45.8; % non-linear
+%  optim.targetVal{2}(4) =   45.2; % non-linear
   optim.targetVal{2}(3) =   42.2; % average
-%  optim.targetVal{2}(6) =   54.6; % non-linear
+%  optim.targetVal{2}(6) =   54.1; % non-linear
   
   % rotatingdrum50
-  optim.targetVal{3}(1) =   33.2; % average
-%  optim.targetVal{3}(2) =   39.3; % non-linear
-  optim.targetVal{3}(3) =   37.9; % average
-%  optim.targetVal{3}(4) =   46.6; % non-linear
+  optim.targetVal{3}(1) =   33.4; % average
+%  optim.targetVal{3}(2) =   37.8; % non-linear
+  optim.targetVal{3}(3) =   38.1; % average
+%  optim.targetVal{3}(4) =   46.1; % non-linear
   optim.targetVal{3}(5) =   42.8; % average
-%  optim.targetVal{3}(6) =   53.9; % non-linear
+%  optim.targetVal{3}(6) =   53.3; % non-linear
 
   % rotatingdrum20
-  optim.tolRes{1}(1)   =   0.015; % tolerance for average (0.01-0.05 default)
+  optim.tolRes{1}(1)   =   1.5/optim.targetVal{1}(1); % tolerance for average (0.01-0.05 default)
 %  optim.tolRes{1}(2)   =   0.04; % tolerance for non-linear (fraction of optim.targetVal)
-  optim.tolRes{1}(2)   =   0.015; % tolerance for average            
+  optim.tolRes{1}(2)   =   1.5/optim.targetVal{1}(2); % tolerance for average     
 %  optim.tolRes{1}(4)   =   0.04; % tolerance for non-linear       
-  optim.tolRes{1}(3)   =   0.015; % tolerance for average           
+  optim.tolRes{1}(3)   =   1.5/optim.targetVal{1}(3); % tolerance for average           
 %  optim.tolRes{1}(6)   =   0.04; % tolerance for non-linear        
   
   % rotatingdrum35
-  optim.tolRes{2}(1)   =   0.015; %0.01; % tolerance for average     
+  optim.tolRes{2}(1)   =   1.5/optim.targetVal{2}(1); %0.01; % tolerance for average     
 %  optim.tolRes{2}(2)   =   0.04; %0.01; % tolerance for non-linear 
-  optim.tolRes{2}(2)   =   0.015; %0.01; % tolerance for average   
+  optim.tolRes{2}(2)   =   1.5/optim.targetVal{2}(2); %0.01; % tolerance for average   
 %  optim.tolRes{2}(4)   =   0.04; %0.01; % tolerance for non-linear
-  optim.tolRes{2}(3)   =   0.015; %0.01; % tolerance for average    
+  optim.tolRes{2}(3)   =   1.5/optim.targetVal{2}(3); %0.01; % tolerance for average    
 %  optim.tolRes{2}(6)   =   0.04; %0.01; % tolerance for non-linear
   
   % rotatingdrum50
-  optim.tolRes{3}(1)   =   0.015; % tolerance for average         
+  optim.tolRes{3}(1)   =   1.5/optim.targetVal{3}(1); % tolerance for average         
 %  optim.tolRes{3}(2)   =   0.04; % tolerance for non-linear       
-  optim.tolRes{3}(2)   =   0.015; % tolerance for average           
+  optim.tolRes{3}(2)   =   1.5/optim.targetVal{3}(2); % tolerance for average           
 %  optim.tolRes{3}(4)   =   0.04; % tolerance for non-linear      
-  optim.tolRes{3}(3)   =   0.015; % tolerance for average            
+  optim.tolRes{3}(3)   =   1.5/optim.targetVal{3}(3); % tolerance for average            
 %  optim.tolRes{3}(6)   =   0.04; % tolerance for non-linear        
  
   
   optim.tolfun        =   0.002; % Default: 0.002 (believe this is relative??)
   optim.maxIter       =   1;     % Default: 3
-  optim.maxFunEvals   =   3;    % Default: 40
+  optim.maxFunEvals   =   5;    % Default: 40
   
   optim.WRL           =   0;     % Default: 0.5 (0 = off)
   % If optim.WRL is set not equal to zero, please see the costFunction function 
   % and uncomment line 56 and comment out line 57 for the Rayleigh timestep to 
   % be considered. The variable modelVars defined below will also need to be
   % updated accordingly.
-  
+   
   
   %*****************************************************************************
   %//	input - MODEL VARIABLES and DESIGN VARIABLES
