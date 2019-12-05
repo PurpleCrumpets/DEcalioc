@@ -49,9 +49,9 @@ function [numProc, runs_p_CPU, remainder]  = SplitToCPU(maxCPU, nRuns, nCPU_run)
   check = numProc * runs_p_CPU + remainder;
   if (check != nRuns)
     % this warning should never occur
-    disp('WARNING: Some runs of the experimental plan might not be computed with the DEM model.')
-    disp('Check the configuration of number of available CPUs and the CPUs per DEM model')
-    disp('The above warning message was generated from the function SplitToCPU.')
+    disp('WARNING: Some runs of the experimental plan might not be computed with the DEM model.');
+    disp('Check the configuration of number of available CPUs and the CPUs per DEM model');
+    disp('The above warning message was generated from the function SplitToCPU.');
   end
   
 endfunction

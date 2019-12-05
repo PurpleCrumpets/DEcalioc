@@ -40,8 +40,8 @@ clear
 more off
 
 % user input variables       
-angleModel = 'threeAngles';
-%angleModel = 'noModel';
+%angleModel = 'threeAngles'; % Unfortunately, quite noisy
+angleModel = 'noModel';
 %angleModel = 'lineTwoCircles'; % Doesn't work with Octave in its current format
 
 % load packages
@@ -54,7 +54,6 @@ pkg load optim
 global pathProject
 pathProject = [pwd(), "/"];
 %pathProject = '/home/tim/Desktop/createRestart35/OctaveFun/';
-%pathProject = '/data/home/church70/MYLIGGGHTS/simulations/createRestartTest/OctaveFun';
 
 % ------------------------------------------------------------------------------
 %% Execution

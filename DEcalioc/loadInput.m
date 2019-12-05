@@ -63,7 +63,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
   samplesPerVar        =   5; % Recommended 5 to 10 by Rackl
   numVar               =   21; % 21 Design Variables
-  Input.numOfSam       =   100;%samplesPerVar*numVar; % samples PER model
+  Input.numOfSam       =   samplesPerVar*numVar; % samples PER model
   
   
   %*****************************************************************************
@@ -87,67 +87,57 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %  - optim.WRL              : weighting factor for the Rayleigh-time step
   
   % rotatingdrum20
-  optim.targetVal{1}(1) =   30.0; % average
-  optim.targetVal{1}(2) =   30.0; % non-linear
-  optim.targetVal{1}(3) =   40.0; % average
-  optim.targetVal{1}(4) =   40.0; % non-linear
-  optim.targetVal{1}(5) =   50.0; % average
-  optim.targetVal{1}(6) =   50.0; % non-linear
+  optim.targetVal{1}(1) =   32.5; % average
+%  optim.targetVal{1}(2) =   37.3; % non-linear
+  optim.targetVal{1}(2) =   36.3; % average
+%  optim.targetVal{1}(4) =   43.6; % non-linear
+  optim.targetVal{1}(3) =   40.4; % average
+%  optim.targetVal{1}(6) =   50.3; % non-linear
   
   % rotatingdrum35
-  optim.targetVal{2}(1) =   32.6; % average
-  optim.targetVal{2}(2) =   37.9; % non-linear
-  optim.targetVal{2}(3) =   36.7; % average
-  optim.targetVal{2}(4) =   45.2; % non-linear
-  optim.targetVal{2}(5) =   41.8; % average
-  optim.targetVal{2}(6) =   54.3; % non-linear
+  optim.targetVal{2}(1) =   33.1; % average
+%  optim.targetVal{2}(2) =   38.4; % non-linear
+  optim.targetVal{2}(2) =   37.2; % average
+%  optim.targetVal{2}(4) =   45.8; % non-linear
+  optim.targetVal{2}(3) =   42.2; % average
+%  optim.targetVal{2}(6) =   54.6; % non-linear
   
   % rotatingdrum50
-  optim.targetVal{3}(1) =   30.0; % average
-  optim.targetVal{3}(2) =   30.0; % non-linear
-  optim.targetVal{3}(3) =   40.0; % average
-  optim.targetVal{3}(4) =   40.0; % non-linear
-  optim.targetVal{3}(5) =   50.0; % average
-  optim.targetVal{3}(6) =   50.0; % non-linear
-
-  % rotatingdrumCalibrationTest
-%  optim.targetVal{1}(1) =   30.0; % average angle at 1 rpm 
-%  optim.targetVal{1}(2) =   30.0; % average angle at 3 rpm
-%  optim.targetVal{1}(3) =   40.0; % average angle at 5 rpm
+  optim.targetVal{3}(1) =   33.2; % average
+%  optim.targetVal{3}(2) =   39.3; % non-linear
+  optim.targetVal{3}(3) =   37.9; % average
+%  optim.targetVal{3}(4) =   46.6; % non-linear
+  optim.targetVal{3}(5) =   42.8; % average
+%  optim.targetVal{3}(6) =   53.9; % non-linear
 
   % rotatingdrum20
-  optim.tolRes{1}(1)   =   0.01; % tolerance for average
-  optim.tolRes{1}(2)   =   0.01; % tolerance for non-linear
-  optim.tolRes{1}(3)   =   0.01; % tolerance for average
-  optim.tolRes{1}(4)   =   0.01; % tolerance for non-linear
-  optim.tolRes{1}(5)   =   0.01; % tolerance for average
-  optim.tolRes{1}(6)   =   0.01; % tolerance for non-linear
+  optim.tolRes{1}(1)   =   0.015; % tolerance for average (0.01-0.05 default)
+%  optim.tolRes{1}(2)   =   0.04; % tolerance for non-linear (fraction of optim.targetVal)
+  optim.tolRes{1}(2)   =   0.015; % tolerance for average            
+%  optim.tolRes{1}(4)   =   0.04; % tolerance for non-linear       
+  optim.tolRes{1}(3)   =   0.015; % tolerance for average           
+%  optim.tolRes{1}(6)   =   0.04; % tolerance for non-linear        
   
   % rotatingdrum35
-  optim.tolRes{2}(1)   =   0.1; %0.01; % tolerance for average
-  optim.tolRes{2}(2)   =   0.1; %0.01; % tolerance for non-linear
-  optim.tolRes{2}(3)   =   0.1; %0.01; % tolerance for average
-  optim.tolRes{2}(4)   =   0.1; %0.01; % tolerance for non-linear
-  optim.tolRes{2}(5)   =   0.1; %0.01; % tolerance for average
-  optim.tolRes{2}(6)   =   0.1; %0.01; % tolerance for non-linear
+  optim.tolRes{2}(1)   =   0.015; %0.01; % tolerance for average     
+%  optim.tolRes{2}(2)   =   0.04; %0.01; % tolerance for non-linear 
+  optim.tolRes{2}(2)   =   0.015; %0.01; % tolerance for average   
+%  optim.tolRes{2}(4)   =   0.04; %0.01; % tolerance for non-linear
+  optim.tolRes{2}(3)   =   0.015; %0.01; % tolerance for average    
+%  optim.tolRes{2}(6)   =   0.04; %0.01; % tolerance for non-linear
   
   % rotatingdrum50
-  optim.tolRes{3}(1)   =   0.01; % tolerance for average
-  optim.tolRes{3}(2)   =   0.01; % tolerance for non-linear
-  optim.tolRes{3}(3)   =   0.01; % tolerance for average
-  optim.tolRes{3}(4)   =   0.01; % tolerance for non-linear
-  optim.tolRes{3}(5)   =   0.01; % tolerance for average
-  optim.tolRes{3}(6)   =   0.01; % tolerance for non-linear
-
-  % rotatingdrumCalibrationTest
-%  optim.tolRes{1}(1)   =   0.01; % tolerance for average angle at 1 rpm
-%  optim.tolRes{1}(2)   =   0.01; % tolerance for average angle at 3 rpm
-%  optim.tolRes{1}(3)   =   0.01; % tolerance for average angle at 5 rpm
+  optim.tolRes{3}(1)   =   0.015; % tolerance for average         
+%  optim.tolRes{3}(2)   =   0.04; % tolerance for non-linear       
+  optim.tolRes{3}(2)   =   0.015; % tolerance for average           
+%  optim.tolRes{3}(4)   =   0.04; % tolerance for non-linear      
+  optim.tolRes{3}(3)   =   0.015; % tolerance for average            
+%  optim.tolRes{3}(6)   =   0.04; % tolerance for non-linear        
+ 
   
-  
-  optim.tolfun        =   0.02; % Default: 0.002
-  optim.maxIter       =   3;     % Default: 3
-  optim.maxFunEvals   =   40;    % Default: 40
+  optim.tolfun        =   0.002; % Default: 0.002 (believe this is relative??)
+  optim.maxIter       =   1;     % Default: 3
+  optim.maxFunEvals   =   3;    % Default: 40
   
   optim.WRL           =   0;     % Default: 0.5 (0 = off)
   % If optim.WRL is set not equal to zero, please see the costFunction function 
@@ -171,7 +161,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   % As the weighting factor of the Rayleigh time step is zero 
   % (optim.WRL = 0), the modelVars are not necessary. They will be written to 
   % to the data.head but will not make any difference as these variables are not 
-  % used anywhere in the main script.  
+  % used anywhere in the main script.
   
   modelVars.poissonsRatioP    = 0.30; % Not in use (optim.WRL = 0)
   modelVars.radiusP           = 2e-3; % Not in use (optim.WRL = 0)

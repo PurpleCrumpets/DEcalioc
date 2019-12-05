@@ -32,7 +32,7 @@ variable caliSkip   equal 2   # Loops to skip before calibration imaging resumes
 ################################################################################
 variable ts         equal 0.000004  # Time-step size         (s)
 variable neighdim   equal 0.004     # Size of neighbour list (m)
-variable thermostep equal 0.2       #0.040     # Thermo time-step       (s)
+variable thermostep equal 0.1       #0.040     # Thermo time-step       (s)
 
 
 ################################################################################

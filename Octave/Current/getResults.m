@@ -44,16 +44,16 @@ function res = getResults(model, folderName)
     res{1} = str2num(A{1});
     res{2} = str2num(A{2});
     res{3} = str2num(A{3});
-    res{4} = str2num(A{4});
-    res{5} = str2num(A{5});
-    res{6} = str2num(A{6});
+%    res{4} = str2num(A{4});
+%    res{5} = str2num(A{5});
+%    res{6} = str2num(A{6});
   catch
     res{1} = NaN;
     res{2} = NaN;
     res{3} = NaN;
-    res{4} = NaN;
-    res{5} = NaN;
-    res{6} = NaN;
+%    res{4} = NaN;
+%    res{5} = NaN;
+%    res{6} = NaN;
   end
   
 endfunction
