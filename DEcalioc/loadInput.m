@@ -57,7 +57,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %                             run. Currently used to represent the number of
   %                             jobs that can be submitted to the cluster at a
   %                             time. 
-  Input.maxCPU         =   250; % Hard limit of cluster: 512 
+  Input.maxCPU         =   40; % Hard limit of cluster: 512 
   
   % Kriging-model specific input
   %  - Input.numOfSam         : number of samples generatred by latin hypercubic sampling
@@ -115,33 +115,33 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.targetVal{3}(6) =   53.3; % non-linear
 
   % rotatingdrum20
-  optim.tolRes{1}(1)   =   1.5/optim.targetVal{1}(1); % tolerance for average (0.01-0.05 default)
-%  optim.tolRes{1}(2)   =   0.04; % tolerance for non-linear (fraction of optim.targetVal)
-  optim.tolRes{1}(2)   =   1.5/optim.targetVal{1}(2); % tolerance for average     
+  optim.tolRes{1}(1)   =   1.5; % tolerance for average (0.01-0.05 default) (set as 1 standard deviation)
+%  optim.tolRes{1}(2)   =   0.04; % tolerance for non-linear 
+  optim.tolRes{1}(2)   =   1.5; % tolerance for average     
 %  optim.tolRes{1}(4)   =   0.04; % tolerance for non-linear       
-  optim.tolRes{1}(3)   =   1.5/optim.targetVal{1}(3); % tolerance for average           
+  optim.tolRes{1}(3)   =   1.5; % tolerance for average           
 %  optim.tolRes{1}(6)   =   0.04; % tolerance for non-linear        
   
   % rotatingdrum35
-  optim.tolRes{2}(1)   =   1.5/optim.targetVal{2}(1); %0.01; % tolerance for average     
+  optim.tolRes{2}(1)   =   1.5; %0.01; % tolerance for average     
 %  optim.tolRes{2}(2)   =   0.04; %0.01; % tolerance for non-linear 
-  optim.tolRes{2}(2)   =   1.5/optim.targetVal{2}(2); %0.01; % tolerance for average   
+  optim.tolRes{2}(2)   =   1.5; %0.01; % tolerance for average   
 %  optim.tolRes{2}(4)   =   0.04; %0.01; % tolerance for non-linear
-  optim.tolRes{2}(3)   =   1.5/optim.targetVal{2}(3); %0.01; % tolerance for average    
+  optim.tolRes{2}(3)   =   1.5; %0.01; % tolerance for average    
 %  optim.tolRes{2}(6)   =   0.04; %0.01; % tolerance for non-linear
   
   % rotatingdrum50
-  optim.tolRes{3}(1)   =   1.5/optim.targetVal{3}(1); % tolerance for average         
+  optim.tolRes{3}(1)   =   1.5; % tolerance for average         
 %  optim.tolRes{3}(2)   =   0.04; % tolerance for non-linear       
-  optim.tolRes{3}(2)   =   1.5/optim.targetVal{3}(2); % tolerance for average           
+  optim.tolRes{3}(2)   =   1.5; % tolerance for average           
 %  optim.tolRes{3}(4)   =   0.04; % tolerance for non-linear      
-  optim.tolRes{3}(3)   =   1.5/optim.targetVal{3}(3); % tolerance for average            
+  optim.tolRes{3}(3)   =   1.5; % tolerance for average            
 %  optim.tolRes{3}(6)   =   0.04; % tolerance for non-linear        
  
   
-  optim.tolfun        =   0.002; % Default: 0.002 (believe this is relative??)
-  optim.maxIter       =   1;     % Default: 3
-  optim.maxFunEvals   =   5;    % Default: 40
+  optim.tolfun        =   0.02; % Default: 0.002 (believe this is relative, set to 2%)
+  optim.maxIter       =   2;     % Default: 3
+  optim.maxFunEvals   =   2;    % Default: 40
   
   optim.WRL           =   0;     % Default: 0.5 (0 = off)
   % If optim.WRL is set not equal to zero, please see the costFunction function 
