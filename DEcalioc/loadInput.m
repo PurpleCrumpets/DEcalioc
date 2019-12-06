@@ -141,7 +141,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   optim.tolfun        =   0.02; % Default: 0.002 (believe this is relative, set to 2%)
   optim.maxIter       =   2;     % Default: 3
-  optim.maxFunEvals   =   2;    % Default: 40
+  optim.maxFunEvals   =   1;    % Default: 40
   
   optim.WRL           =   0;     % Default: 0.5 (0 = off)
   % If optim.WRL is set not equal to zero, please see the costFunction function 
