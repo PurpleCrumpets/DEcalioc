@@ -220,7 +220,7 @@ variable omegaiter equal 0 # Initial rotational speed of drum (time-step = 1)
 print "${omegaiter}" screen no append post/drum_rotational_velocity.txt
 
 # Create Periodic Geometry/Particle Dump if Set
-if "(${produceVTK} == 0)" then "jump in.rotatingdrum dumpstlskip5" # (5)
+if "(${produceVTK} == 0)" then "jump in.rotatingdrumRestart dumpstlskip5" # (5)
 
 if "(${simdim} == 2) && (${periodicbb} == 1)" then "print ''" else &
    "dump dumpstl8 all mesh/stl ${thermofreq} post/dump_ends_*.stl cad4 cad6"
