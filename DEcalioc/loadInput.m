@@ -109,9 +109,9 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   % rotatingdrum50
   optim.targetVal{3}(1) =   33.4; % average
 %  optim.targetVal{3}(2) =   37.8; % non-linear
-  optim.targetVal{3}(3) =   38.1; % average
+  optim.targetVal{3}(2) =   38.1; % average
 %  optim.targetVal{3}(4) =   46.1; % non-linear
-  optim.targetVal{3}(5) =   42.8; % average
+  optim.targetVal{3}(3) =   42.8; % average
 %  optim.targetVal{3}(6) =   53.3; % non-linear
 
   % rotatingdrum20
