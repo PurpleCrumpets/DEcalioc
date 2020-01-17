@@ -139,9 +139,9 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.tolRes{3}(6)   =   0.04; % tolerance for non-linear        
  
   
-  optim.tolfun        =   0.02; % Default: 0.002 (believe this is relative, set to 2%)
-  optim.maxIter       =   1;     % Default: 3
-  optim.maxFunEvals   =   1;    % Default: 40
+  optim.tolfun        =   0.002; % Default: 0.002 (believe this is relative, set to 0.2%)
+  optim.maxIter       =   3;     % Default: 3
+  optim.maxFunEvals   =   40;    % Default: 40
   
   optim.WRL           =   0;     % Default: 0.5 (0 = off)
   % If optim.WRL is set not equal to zero, please see the costFunction function 
