@@ -178,13 +178,13 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   %   - assign: cell struct which assigns variable names to the design variables 
   
   % Coefficient of Restitution
-  assign{1} = "COR_PP_PP";
-  assign{2} = "COR_PP_GL";
-  assign{3} = "COR_PP_DW";
-  assign{4} = "COR_PP_DE1";
-  assign{5} = "COR_GL_GL";
-  assign{6} = "COR_GL_DW";
-  assign{7} = "COR_GL_DE1";
+  assign{1} = "CoR_PP_PP";
+  assign{2} = "CoR_PP_GL";
+  assign{3} = "CoR_PP_DW";
+  assign{4} = "CoR_PP_DE1";
+  assign{5} = "CoR_GL_GL";
+  assign{6} = "CoR_GL_DW";
+  assign{7} = "CoR_GL_DE1";
   
   % Coefficient of Friction
   assign{8} = "CoF_PP_PP";
