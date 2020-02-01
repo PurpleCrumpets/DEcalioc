@@ -88,7 +88,7 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   % The average angle of repose obtained for the middle simulation
   % (35% filling degree, 20 RPM). The simulation that provided the closest
-  % results was 0001jpa_45752 [(OLD) - NOW 0020ofy_51556]. The corresponding set of parameters for 
+  % results was 0001jpa_45752 (OLD) - now 0020ofy_51556. The corresponding set of parameters for 
   % this simulation were found for the other filling degrees 
   
   % rotatingdrum20
@@ -105,8 +105,8 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
   
   % rotatingdrum35
   optim.targetVal{2}(1) =   33.8; % average
-  optim.targetVal{2}(2) =   38.4; % average
-  optim.targetVal{2}(3) =   43.4; % average
+  optim.targetVal{2}(2) =   {38.4086615000000; % average
+  optim.targetVal{2}(3) =   33.6; % average
  
 %   optim.targetVal{2}(1) =   33.6; % average (OLD)
 %  optim.targetVal{2}(2) =   37.3; % non-linear
@@ -116,39 +116,35 @@ function [Input, optim, modelVars, assign, paramLims] = loadInput()
 %  optim.targetVal{2}(6) =   54.1; % non-linear
   
   % rotatingdrum50
-  optim.targetVal{3}(1) =   33.8; % average
-  optim.targetVal{3}(2) =   38.5; % average
-  optim.targetVal{3}(3) =   43.3; % average
-  
-%   optim.targetVal{3}(1) =   33.4; % average (OLD)
+  optim.targetVal{3}(1) =   33.4; % average (OLD)
 %  optim.targetVal{3}(2) =   37.8; % non-linear
-%   optim.targetVal{3}(2) =   38.1; % average (OLD)
+  optim.targetVal{3}(2) =   38.1; % average (OLD)
 %  optim.targetVal{3}(4) =   46.1; % non-linear
-%   optim.targetVal{3}(3) =   42.8; % average (OLD)
+  optim.targetVal{3}(3) =   42.8; % average (OLD)
 %  optim.targetVal{3}(6) =   53.3; % non-linear
 
   % rotatingdrum20
-  optim.tolRes{1}(1)   =   1.58/optim.targetVal{1}(1); % tolerance for average (0.01-0.05 default) (set as 1 standard deviation of 1.5 degrees)
+  optim.tolRes{1}(1)   =   1.5/optim.targetVal{1}(1); % tolerance for average (0.01-0.05 default) (set as 1 standard deviation of 1.5 degrees)
 %  optim.tolRes{1}(2)   =   0.04; % tolerance for non-linear 
-  optim.tolRes{1}(2)   =   1.58/optim.targetVal{1}(2); % tolerance for average     
+  optim.tolRes{1}(2)   =   1.5/optim.targetVal{1}(2); % tolerance for average     
 %  optim.tolRes{1}(4)   =   0.04; % tolerance for non-linear       
-  optim.tolRes{1}(3)   =   1.58/optim.targetVal{1}(3); % tolerance for average           
+  optim.tolRes{1}(3)   =   1.5/optim.targetVal{1}(3); % tolerance for average           
 %  optim.tolRes{1}(6)   =   0.04; % tolerance for non-linear        
   
   % rotatingdrum35
-  optim.tolRes{2}(1)   =   1.58/optim.targetVal{2}(1); %0.01; % tolerance for average     
+  optim.tolRes{2}(1)   =   1.5/optim.targetVal{2}(1); %0.01; % tolerance for average     
 %  optim.tolRes{2}(2)   =   0.04; %0.01; % tolerance for non-linear 
-  optim.tolRes{2}(2)   =   1.58/optim.targetVal{2}(2); %0.01; % tolerance for average   
+  optim.tolRes{2}(2)   =   1.5/optim.targetVal{2}(2); %0.01; % tolerance for average   
 %  optim.tolRes{2}(4)   =   0.04; %0.01; % tolerance for non-linear
-  optim.tolRes{2}(3)   =   1.58/optim.targetVal{2}(3); %0.01; % tolerance for average    
+  optim.tolRes{2}(3)   =   1.5/optim.targetVal{2}(3); %0.01; % tolerance for average    
 %  optim.tolRes{2}(6)   =   0.04; %0.01; % tolerance for non-linear
   
   % rotatingdrum50
-  optim.tolRes{3}(1)   =   1.58/optim.targetVal{3}(1); % tolerance for average         
+  optim.tolRes{3}(1)   =   1.5/optim.targetVal{3}(1); % tolerance for average         
 %  optim.tolRes{3}(2)   =   0.04; % tolerance for non-linear       
-  optim.tolRes{3}(2)   =   1.58/optim.targetVal{3}(2); % tolerance for average           
+  optim.tolRes{3}(2)   =   1.5/optim.targetVal{3}(2); % tolerance for average           
 %  optim.tolRes{3}(4)   =   0.04; % tolerance for non-linear      
-  optim.tolRes{3}(3)   =   1.58/optim.targetVal{3}(3); % tolerance for average            
+  optim.tolRes{3}(3)   =   1.5/optim.targetVal{3}(3); % tolerance for average            
 %  optim.tolRes{3}(6)   =   0.04; % tolerance for non-linear        
  
   
